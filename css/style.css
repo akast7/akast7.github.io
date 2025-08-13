@@ -174,3 +174,22 @@ footer {
   text-align: center;
   padding: 1rem 0;
 }
+
+/* Photo Gallery */
+.photo-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.03);
+}
+
+.photo-gallery .col-md-4,
+.photo-gallery .col-sm-6,
+.photo-gallery .col-12 {
+  padding: 0.5rem; /* Add some padding between images */
+}
