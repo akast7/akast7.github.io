@@ -1,413 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akhil V. Kasturi | PhD Portfolio</title>
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhil V. Kasturi - PhD Candidate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Chosen Palette: "Warm Neutrals" - A clean and professional palette with a light slate background, dark text for readability, and a subtle cyan accent for links and highlights.
+        Application Structure Plan: The SPA is structured thematically to tell a compelling story. It begins with a clear "About Me" mission statement. The core research is broken into three thematic sections (Multimodal AI, Medical Vision, Immersive Training) using interactive cards to allow users to drill down into details without being overwhelmed. This is followed by a comprehensive, filterable publications list. This structure prioritizes user-driven exploration over a simple chronological list, making the content more digestible and impactful for recruiters and academics.
+        Visualization & Content Choices: 
+        - About Me: Simple, elegant text block. Goal: Establish expertise and mission. Method: HTML/Tailwind.
+        - Research Projects: Interactive cards. Goal: Showcase key projects and their impact. Method: HTML/Tailwind with JS for toggleable details. Interaction: Users can click "Details" to see more, preventing initial information overload.
+        - Publications: Filterable list. Goal: Provide a comprehensive academic record that is easy to navigate. Method: HTML/Tailwind with JS for filtering. Interaction: Users can click year buttons to instantly filter the list, making it easy to find recent work.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .active-filter {
+            background-color: #0891b2; /* cyan-600 */
+            color: white;
+        }
+    </style>
 </head>
-<body>
-  <!-- Hero section with name and background image -->
-  <header
-    class="hero-section text-white text-center d-flex align-items-center justify-content-center"
-    style="background-image: url('assets/hero-bg.png');"
-  >
-    <div class="overlay"></div>
-    <div class="container py-5">
-      <h1 class="display-4 fw-bold">Akhil Venkata Ramana Kasturi</h1>
-      <p class="lead">
-        PhD Candidate in Computer Vision & Biomedical Signal and Image Processing
-      </p>
+<body class="text-slate-800">
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <img src="assets/profile.jpg" alt="Akhil V. Kasturi" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+            <h1 class="text-4xl font-bold text-slate-900">Akhil V. Kasturi</h1>
+            <p class="text-xl text-cyan-700 mt-2">PhD Candidate, University of Rochester</p>
+            <nav class="mt-6 flex justify-center space-x-4 sm:space-x-6 text-sm sm:text-base">
+                <a href="#about" class="text-slate-600 hover:text-cyan-700 transition">About</a>
+                <a href="#research" class="text-slate-600 hover:text-cyan-700 transition">Research</a>
+                <a href="#publications" class="text-slate-600 hover:text-cyan-700 transition">Publications</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- About Me Section -->
+            <section id="about" class="mb-16 bg-white p-8 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">About Me</h2>
+                <div class="space-y-4 text-slate-700 leading-relaxed">
+                    <p>
+                        I am a PhD candidate at the University of Rochester, where my research operates at the intersection of <strong>artificial intelligence, medical imaging, and clinical decision-making</strong>. I am advised by Prof. Axel Wismüller and am a member of the Rochester Human-Computer Interaction (ROCHCI) group.
+                    </p>
+                    <p>
+                        I’m driven by the potential of AI to transform disease diagnosis and prediction—enabling earlier, more accurate, and personalized care. My research focuses on developing reliable deep learning tools that utilize <strong>multimodal data</strong>, integrating medical imaging with clinical text and patient history to solve high-stakes challenges. I am particularly interested in how foundational models, including transformers and vision-language models, can be adapted for prognostication, diagnostic report generation, and immersive medical training. My work has been recognized with honors including the <strong>Best Scientific Poster Award</strong> at the SPIE Medical Imaging conference.
+                    </p>
+                    <p>
+                        Previously, I graduated from Western University with an M.Eng. in Signal & Image Processing and from Fanshawe College with a Master's in Project Management. During my time there, I conducted research at the National Centre for Audiology, where I developed the core machine learning and software systems for an embedded patient simulator robot.
+                    </p>
+                     <p>Please feel free to get in touch!</p>
+                </div>
+            </section>
+
+            <!-- Research Highlights Section -->
+            <section id="research" class="mb-16">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Research Highlights</h2>
+                <div id="research-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Research cards will be injected here by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="bg-white p-8 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">Research & Publications</h2>
+                <p class="text-slate-600 mb-6">(* indicates co-first author)</p>
+
+                <div class="flex justify-center space-x-2 mb-8">
+                    <button class="filter-btn active-filter px-4 py-2 text-sm font-medium rounded-full transition" data-year="all">All</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full transition bg-slate-200 hover:bg-slate-300" data-year="2025">2025</button>
+                    <button class="filter-btn px-4 py-2 text-sm font-medium rounded-full transition bg-slate-200 hover:bg-slate-300" data-year="2024">2024</button>
+                </div>
+
+                <div id="publications-list" class="space-y-6">
+                    <!-- Publications will be injected here by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 py-6 border-t border-slate-200">
+            <div class="flex justify-center items-center space-x-6">
+                 <a href="mailto:akasturi@ur.rochester.edu" class="text-slate-500 hover:text-cyan-700 transition">Email</a>
+                 <a href="#" class="text-slate-500 hover:text-cyan-700 transition">CV</a>
+                 <a href="https://www.linkedin.com/in/akhil-v-k-21069711b/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-cyan-700 transition">LinkedIn</a>
+                 <a href="#" class="text-slate-500 hover:text-cyan-700 transition">Google Scholar</a>
+            </div>
+            <p class="text-xs text-slate-400 mt-4">&copy; 2025 Akhil V. Kasturi</p>
+        </footer>
+
     </div>
-  </header>
 
-  <!-- Navigation bar -->
-  <nav id="navbar" class="navbar">
-    <div class="brand">AK</div>
-    <ul>
-      <li><a href="#bio">About</a></li>
-      <li><a href="#cv">CV</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#photos">Photos</a></li>
-    </ul>
-  </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const researchData = [
+                {
+                    title: "Multimodal AI for Clinical Prognostication",
+                    project: "CLAIR",
+                    description: "Developed a novel multimodal framework integrating CT imaging and clinical data with a cross-attention mechanism. The model enables accurate neurological prognostication within 24 hours post-cardiac arrest, a significant improvement over the 72-hour clinical standard, achieving a state-of-the-art AUC-ROC of 0.94.",
+                    tags: ["Multimodal AI", "Transformers", "Clinical AI"]
+                },
+                {
+                    title: "Generative AI for Radiology Reporting",
+                    project: "BioVLF-T",
+                    description: "Architected a temporal vision-language framework that leverages historical patient data to generate contextually-aware radiology reports. This approach more closely mimics a radiologist's diagnostic workflow and improved CIDEr scores by over 1000%.",
+                    tags: ["Generative AI", "VLM", "NLP"]
+                },
+                {
+                    title: "AI for Medical Vision & Diagnostics",
+                    project: "ETT-LDx",
+                    description: "Designed and validated a suite of transformer-based models for the precise detection, segmentation, and placement verification of anatomical landmarks and medical devices in chest radiographs, outperforming existing industry standards on key accuracy metrics.",
+                    tags: ["Computer Vision", "Segmentation", "Transformers"]
+                },
+                 {
+                    title: "Immersive Medical Education & Training",
+                    project: "BrainScale VR",
+                    description: "Created a VR environment for medical training that facilitates interactive examination of 3D MRI brain scans. The platform integrates AI-assisted segmentation (UNETR) and a conversational LLM agent to provide an immersive, hands-on learning experience.",
+                    tags: ["VR/AR", "3D Segmentation", "LLM"]
+                }
+            ];
 
-  <main class="container py-4">
-    <!-- About / Bio Section -->
-    <section id="bio" class="mb-5">
-      <h2 class="section-title">About Me</h2>
-      <div class="row align-items-center">
-        <div class="col-md-3 text-center mb-3 mb-md-0">
-          <img
-            src="assets/hero-bg.png"
-            class="img-fluid rounded-circle"
-            alt="Profile photo"
-            style="width: 180px; height: 180px; object-fit: cover"
-          />
-        </div>
-        <div class="col-md-9">
-          <p>
-            Hello! I'm
-            <strong>Akhil Venkata Ramana Kasturi</strong>, a PhD candidate at the
-            University of Rochester. My research focuses on medical computer
-            vision, signal and image processing, and applying artificial
-            intelligence to healthcare. I enjoy working at the intersection of
-            engineering and medicine, developing methods that improve patient
-            outcomes. This is a placeholder bio — please replace it with your
-            own description when you’re ready.
-          </p>
-        </div>
-      </div>
-    </section>
+            const publicationsData = [
+                {
+                    year: 2025,
+                    title: "CLAIR: Rewriting the Prognostic Timeline: Al Integration of Brain Imaging and Clinical Data Enables Early Post-Arrest Decisions",
+                    authors: "<strong>Akhil Kasturi</strong>*, Ashley R. Proctor*, Ali Vosoughi, and 12 more authors",
+                    venue: "<em>Under Review, npj Digital Medicine</em>",
+                    links: { paper: "#", code: "#" }
+                },
+                {
+                    year: 2025,
+                    title: "BioVLF-T: A Temporal Framework for Radiology Report Generation using Pre-Trained Vision Language Foundational Models",
+                    authors: "<strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2025</em>",
+                    links: { paper: "#" }
+                },
+                {
+                    year: 2025,
+                    title: "ETT-LDx: Transformer-based Landmark Detection system for Endotracheal Tube Placement Verification in Chest Radiographs",
+                    authors: "<strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2025</em>",
+                    links: { paper: "#" }
+                },
+                {
+                    year: 2025,
+                    title: "BrainScale VR: VR-Enabled Foundational Vision Language Models for Medical Training",
+                    authors: "<strong>Akhil Kasturi</strong> & Adma Gama-Krummel",
+                    venue: "<em>Project Report, University of Rochester, 2025</em>",
+                    links: { project: "#", code: "#" }
+                },
+                {
+                    year: 2024,
+                    title: "Anatomical Landmark Detection in Chest X-Rays using Transformer-Based Networks",
+                    authors: "<strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2024</em>",
+                    links: { paper: "#" }
+                },
+                {
+                    year: 2024,
+                    title: "Segmentation of Catheter Tubes and Lines in Chest X-Rays using Deep Learning Models",
+                    authors: "<strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2024</em>",
+                    links: { paper: "#" }
+                },
+                {
+                    year: 2024,
+                    title: "Classification of Endotracheal Tube Position in Chest X-Rays Images",
+                    authors: "<strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2024</em>",
+                    links: { paper: "#" }
+                },
+                {
+                    year: 2024,
+                    title: "Enhancing Graph Attention Neural Network Performance for Marijuana Consumption Classification through Large-scale Augmented Granger Causality (lsAGC) Analysis of Functional MR Images",
+                    authors: "Ali Vosoughi, <strong>Akhil Kasturi</strong>, and Axel Wismüller",
+                    venue: "<em>SPIE Medical Imaging, 2024</em>",
+                    links: { paper: "#" }
+                }
+            ];
 
-    
+            const researchGrid = document.getElementById('research-grid');
+            researchData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300';
+                
+                let tagsHtml = item.tags.map(tag => `<span class="inline-block bg-cyan-100 text-cyan-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${tag}</span>`).join('');
 
-    <!-- CV Section -->
-    <section id="cv" class="mb-5">
-      <h2 class="section-title">Curriculum Vitae</h2>
-      <p>
-        You can download my PDF CV here:
-        <a href="assets/pdf/Profile.pdf" download>Download CV (PDF)</a>.
-      </p>
-      <p>
-        I’m preparing a web-friendly version of my CV that will be displayed
-        directly on this site. For now, please view the PDF above.
-      </p>
-    </section>
+                card.innerHTML = `
+                    <h3 class="text-lg font-bold text-slate-900">${item.title}</h3>
+                    <p class="text-sm font-semibold text-cyan-700 mb-3">${item.project}</p>
+                    <div class="flex flex-wrap gap-2 mb-4">${tagsHtml}</div>
+                    <p class="text-slate-600 text-sm leading-relaxed">${item.description}</p>
+                `;
+                researchGrid.appendChild(card);
+            });
 
-    <!-- News Section -->
-    <section id="news" class="mb-5">
-      <h2 class="section-title">News & Updates</h2>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <strong>2025-07-15:</strong> Submitted a paper to <em>Nature</em> on
-          generative models for medical imaging.
-        </li>
-        <li class="list-group-item">
-          <strong>2024-12-01:</strong> Presented research at RSNA 2024.
-        </li>
-        <li class="list-group-item">
-          <strong>2023-06-20:</strong> Received Best Project Award in the
-          Department of Computer Engineering.
-        </li>
-      </ul>
-    </section>
+            const publicationsList = document.getElementById('publications-list');
+            function renderPublications(filterYear = 'all') {
+                publicationsList.innerHTML = '';
+                const filteredData = filterYear === 'all' ? publicationsData : publicationsData.filter(p => p.year == filterYear);
 
-    <!-- Publications Section -->
-    <section id="publications" class="mb-5">
-      <h2 class="section-title">Publications</h2>
-      <input
-        type="text"
-        id="searchInput"
-        class="form-control"
-        placeholder="Search publications..."
-      />
-      <div class="mt-4">
-        <h3 class="h5 mb-3">First-Author Works</h3>
-        <ul class="list-group mb-4">
-          <li class="list-group-item publication-item">
-            <strong>Anatomical landmark detection in chest x-ray images using transformer-based networks</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, L Stockmaster, WJ Sehnert, ...</em> · 2024 · Medical Imaging 2024: Computer-Aided Diagnosis ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Detecting landmarks in anatomical medical images using transformer-based networks</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, L Stockmaster, WJ Sehnert, ...</em> · 2023 · Emerging Topics in Artificial Intelligence (ETAI) ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Functional connectivity-based classification of autism spectrum disorder using mutual connectivity analysis with local models</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, L Stockmaster, A Wismüller</em> · 2024 · Emerging Topics in Artificial Intelligence (ETAI) ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Classification of endotracheal tube position in chest x-rays images</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, L Stockmaster, WJ Sehnert, ...</em> · 2024 · Medical Imaging 2024: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Segmentation of catheter tubes and lines in chest x-rays using deep learning models</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, L Stockmaster, WJ Sehnert, ...</em> · 2024 · Medical Imaging 2024: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>ETT-LDx: transformer-based landmark detection system for endotracheal tube placement verification in chest radiographs</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, A Wismüller</em> · 2025 · Medical Imaging 2025: Computer-Aided Diagnosis ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>BioVLM-T: A temporal framework for radiology report generation using pre-trained vision language foundational models</strong>
-            <br /><em>A Kasturi, A Vosoughi, N Hadjiyski, A Wismüller</em> · 2025 · Medical Imaging 2025: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-        </ul>
-        <h3 class="h5 mb-3">Contributing Author Works</h3>
-        <ul class="list-group">
-          <li class="list-group-item publication-item">
-            <strong>Identification of schizophrenia patients using large-scale extended granger causality (lsxgc) in functional mr imaging</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi, N Hadjiyski</em> · 2023 · Medical Imaging 2023: Biomedical Applications in Molecular, Structural, and … ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Large-scale granger causality (lsgc) for classification of schizophrenia using functional mri</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi, N Hadjiyski</em> · 2023 · Medical Imaging 2023: Biomedical Applications in Molecular, Structural, and … ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Large-scale augmented granger causality (lsagc) for discovery of causal brain connectivity networks in schizophrenia patients using functional mri neuroimaging</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi, N Hadjiyski</em> · 2023 · Medical Imaging 2023: Biomedical Applications in Molecular, Structural, and … ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Leveraging a memory-driven transformer for efficient radiology report generation from chest x-rays to establish a quantitative metric</strong>
-            <br /><em>N Hadjiyski, A Kasturi, A Vosoughi, A Wismüller</em> · 2024 · Emerging Topics in Artificial Intelligence (ETAI) ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Graph attention transformers and large-scale granger causality to classify marijuana consumption from functional mr images</strong>
-            <br /><em>A Vosoughi, A Kasturi, A Wismüller</em> · 2024 · Medical Imaging 2024: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Leveraging large-scale granger causality and neural networks to measure the level of consciousness in doc patients</strong>
-            <br /><em>A Vosoughi, T Raiser, T Luther, L Willacker, M Rosenfelder, A Kasturi, ...</em> · 2023 · Emerging Topics in Artificial Intelligence (ETAI) ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Classification of schizophrenia using large-scale kernelized granger causality (lskgc) and functional mr imaging</strong>
-            <br /><em>A Vosoughi, A Kasturi, N Hadjiyski, A Wismüller</em> · 2023 · Medical Imaging 2023: Computer-Aided Diagnosis ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Enhancing graph attention neural network performance for marijuana consumption classification through large-scale augmented granger causality (lsagc) analysis of functional mr …</strong>
-            <br /><em>A Vosoughi, A Kasturi, A Wismüller</em> · 2024 · Medical Imaging 2024: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Tracking the impact of global iodinated contrast agent shortage on radiology: analysis of ct exam volumes at a major us healthcare</strong>
-            <br /><em>A Wismüller, J Avondo, L Stockmaster, A Kasturi, A Vosoughi</em> · 2023 · Medical Imaging 2023: Biomedical Applications in Molecular, Structural, and … ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Large-scale nonlinear Granger causality (lsNGC) analysis of functional MRI data for schizophrenia classification</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi</em> · 2025 · Medical Imaging 2025: Computer-Aided Diagnosis ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Analysis of brain connectivity in autism spectrum disorder using large-scale non-linear Granger causality (lsNGC)</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi</em> · 2025 · Medical Imaging 2025: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Large-scale augmented Granger causality (lsAGC) for enhanced analysis of brain connectivity in autism spectrum disorder</strong>
-            <br /><em>A Wismüller, A Vosoughi, A Kasturi</em> · 2025 · Medical Imaging 2025: Clinical and Biomedical Imaging ·
-            <a href="#">Link</a>
-          </li>
-          <li class="list-group-item publication-item">
-            <strong>Design of Flexible Wideband Monopole Antenna</strong>
-            <br /><em>P Bhakiyalakshmi, PS Kumar, M Susila, B Monica, A Kasturi, PN Raju</em> · 2019 · 2019 International Conference on Vision Towards Emerging Trends in … ·
-            <a href="#">Link</a>
-          </li>
-        </ul>
-      </div>
-    </section>
+                filteredData.forEach(pub => {
+                    const item = document.createElement('div');
+                    item.className = 'publication-item';
+                    item.dataset.year = pub.year;
 
-    <!-- Projects Section -->
-    <section id="projects" class="mb-5">
-      <h2 class="section-title">Research Projects</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div
-              class="card-img-top project-img"
-              style="background-image: url('assets/hero-bg.png');"
-            ></div>
-            <div class="card-body">
-              <h5 class="card-title">Project One</h5>
-              <p class="card-text">
-                This is a placeholder description for project one. Replace with a
-                summary of your research project, key findings, and impact.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div
-              class="card-img-top project-img"
-              style="background-image: url('assets/hero-bg.png');"
-            ></div>
-            <div class="card-body">
-              <h5 class="card-title">Project Two</h5>
-              <p class="card-text">
-                Placeholder for project two. Briefly describe the goals, methods,
-                and outcomes of your study. You can link related
-                publications.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div
-              class="card-img-top project-img"
-              style="background-image: url('assets/hero-bg.png');"
-            ></div>
-            <div class="card-body">
-              <h5 class="card-title">Project Three</h5>
-              <p class="card-text">
-                Placeholder for project three. Include a concise summary and any
-                visuals or figures that help explain your work.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                    let linksHtml = Object.entries(pub.links).map(([name, url]) => 
+                        `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-cyan-600 hover:text-cyan-800 font-medium capitalize">${name}</a>`
+                    ).join(' | ');
 
-    
+                    item.innerHTML = `
+                        <p class="font-semibold text-slate-800">${pub.title}</p>
+                        <p class="text-sm text-slate-600 my-1">${pub.authors}</p>
+                        <p class="text-sm text-slate-500">${pub.venue}</p>
+                        <div class="text-sm mt-1">${linksHtml}</div>
+                    `;
+                    publicationsList.appendChild(item);
+                });
+            }
 
-    <!-- Teaching Section -->
-    <section id="teaching" class="mb-5">
-      <h2 class="section-title">Teaching & Mentoring</h2>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <strong>Graduate Teaching Assistant</strong> – Department of Computer
-          Engineering, University of Rochester (2023–2024)
-        </li>
-        <li class="list-group-item">
-          <strong>Mentor</strong> – Supervised undergraduate students on research
-          projects in medical imaging and AI
-        </li>
-      </ul>
-    </section>
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active-filter', 'bg-slate-200', 'hover:bg-slate-300'));
+                    
+                    button.classList.add('active-filter');
+                    filterButtons.forEach(btn => {
+                        if (!btn.classList.contains('active-filter')) {
+                             btn.classList.add('bg-slate-200', 'hover:bg-slate-300');
+                        }
+                    });
 
-    
+                    renderPublications(button.dataset.year);
+                });
+            });
 
-    <!-- Contact Section -->
-    <section id="contact" class="mb-5">
-      <h2 class="section-title">Contact & Links</h2>
-      <p>
-        Feel free to reach out via email or explore my profiles on various
-        platforms.
-      </p>
-      <ul class="list-unstyled">
-        <li>
-          <strong>Email:</strong>
-          <a href="mailto:akasturi@ur.rochester.edu"
-            >akasturi<span class="text-danger">[at]</span>ur.rochester.edu</a
-          >
-        </li>
-        <li>
-          <strong>Google Scholar:</strong>
-          <a
-            href="https://scholar.google.com/citations?user=_-CUcbYAAAAJ&hl=en&oi=ao"
-            target="_blank"
-            rel="noopener"
-            >View Profile</a
-          >
-        </li>
-        <li>
-          <strong>LinkedIn:</strong> <a href="#">Coming soon</a>
-        </li>
-        <li>
-          <strong>GitHub:</strong> <a href="#">Coming soon</a>
-        </li>
-        <li>
-          <strong>ORCID:</strong> <a href="#">Coming soon</a>
-        </li>
-        <li>
-          <strong>ResearchGate:</strong> <a href="#">Coming soon</a>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Photos Section -->
-    <section id="photos" class="mb-5">
-      <h2 class="section-title">Conference Photos</h2>
-      <div class="row g-4 photo-gallery">
-        <!-- Placeholder for photos -->
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/237/400/300" alt="Conference Photo 1" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 1, 2025</strong><br>
-              Submitted our work on "Topic A" at Conference 1 2025.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/238/400/300" alt="Conference Photo 2" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 2, 2025</strong><br>
-              Submitted our work on "Topic B" at Conference 2 2025.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/239/400/300" alt="Conference Photo 3" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 3, 2025</strong><br>
-              Submitted our work on "Topic C" at Conference 3 2025.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/240/400/300" alt="Conference Photo 4" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 4, 2025</strong><br>
-              Submitted our work on "Topic D" at Conference 4 2025.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/241/400/300" alt="Conference Photo 5" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 5, 2025</strong><br>
-              Submitted our work on "Topic E" at Conference 5 2025.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-6 col-sm-6 col-12">
-          <figure>
-            <img src="https://picsum.photos/id/242/400/300" alt="Conference Photo 6" class="img-fluid rounded shadow-sm" />
-            <figcaption class="mt-2 text-center">
-              <strong>Conference Name 6, 2025</strong><br>
-              Submitted our work on "Topic F" at Conference 6 2025.
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-      <p class="mt-3 text-muted">
-        To add your photos, place them in the `assets/photos/` directory and update the `src` attributes above.
-      </p>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <div class="container">
-      <small>
-        © <span id="currentYear"></span> Akhil V. Kasturi · Powered by GitHub
-        Pages
-      </small>
-    </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script src="js/search.js"></script>
-  <script>
-    // Update year in footer
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
-  </script>
+            renderPublications();
+        });
+    </script>
 </body>
 </html>
