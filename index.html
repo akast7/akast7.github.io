@@ -455,9 +455,8 @@
         
         .conference-gallery {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(2, 250px);
-            gap: 1rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
             margin-top: 4rem;
         }
         
@@ -466,18 +465,11 @@
             overflow: hidden;
             position: relative;
             cursor: pointer;
+            aspect-ratio: 4/3;
         }
         
-        .gallery-item:nth-child(1) {
-            grid-column: span 2;
-        }
-        
-        .gallery-item:nth-child(4) {
-            grid-column: span 2;
-        }
-        
-        .gallery-item:nth-child(7) {
-            grid-column: span 2;
+        .gallery-item.featured {
+            grid-column: span 1;
         }
         
         .gallery-item img {
@@ -485,7 +477,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease, filter 0.3s ease;
-            filter: grayscale(30%);
+            filter: grayscale(20%);
         }
         
         .gallery-item:hover img {
@@ -498,8 +490,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 1rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
             transform: translateY(100%);
             transition: transform 0.3s ease;
         }
@@ -509,19 +501,21 @@
         }
         
         .gallery-caption span {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--paper);
+            display: block;
         }
         
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
+        .gallery-caption .caption-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .gallery-caption .caption-desc {
             font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
+            color: var(--muted);
+            line-height: 1.4;
         }
         
         /* Publications Section */
@@ -735,7 +729,7 @@
             }
             
             .conference-gallery {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .about-content {
@@ -766,16 +760,11 @@
             }
             
             .conference-gallery {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto;
+                grid-template-columns: 1fr;
             }
             
-            .gallery-item,
-            .gallery-item:nth-child(1),
-            .gallery-item:nth-child(4),
-            .gallery-item:nth-child(7) {
-                grid-column: span 1;
-                height: 200px;
+            .gallery-item {
+                aspect-ratio: 16/10;
             }
             
             .footer-content {
@@ -966,63 +955,29 @@
         <div class="conference-gallery">
             <!-- Photo 1 - RSNA 2025 -->
             <div class="gallery-item">
-                <div class="gallery-placeholder">RSNA 2025 — Chicago<br>Drop image here</div>
-                <!-- <img src="assets/conf/rsna-2025-1.jpg" alt="RSNA 2025"> -->
-                <div class="gallery-caption"><span>RSNA 2025 — Chicago</span></div>
+                <img src="assets/conference/rsna-2025-1.jpg" alt="RSNA 2025 - Presenting with Dr. Axel Wismüller">
+                <div class="gallery-caption">
+                    <span class="caption-title">RSNA 2025 — Chicago</span>
+                    <span class="caption-desc">Presenting our digital poster on multimodal methods for early neurological prognostication in post-cardiac arrest patients with Dr. Axel Wismüller</span>
+                </div>
             </div>
             
-            <!-- Photo 2 - RSNA 2025 -->
+            <!-- Photo 2 - SPIE 2024 Presentation -->
             <div class="gallery-item">
-                <div class="gallery-placeholder">RSNA 2025<br>Drop image here</div>
-                <div class="gallery-caption"><span>RSNA 2025 — Poster Presentation</span></div>
+                <img src="assets/conference/spie-2024-1.jpg" alt="SPIE Medical Imaging 2024 - ETT-LDx Presentation">
+                <div class="gallery-caption">
+                    <span class="caption-title">SPIE Medical Imaging 2024</span>
+                    <span class="caption-desc">Presenting ETT-LDx — our anatomical landmark detection system for endotracheal tube placement assessment</span>
+                </div>
             </div>
             
-            <!-- Photo 3 - SPIE 2025 -->
+            <!-- Photo 3 - SPIE 2024 Award -->
             <div class="gallery-item">
-                <div class="gallery-placeholder">SPIE 2025<br>Drop image here</div>
-                <div class="gallery-caption"><span>SPIE Medical Imaging 2025</span></div>
-            </div>
-            
-            <!-- Photo 4 - SPIE 2025 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">SPIE 2025<br>Drop image here</div>
-                <div class="gallery-caption"><span>SPIE Medical Imaging 2025</span></div>
-            </div>
-            
-            <!-- Photo 5 - SPIE 2024 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">SPIE 2024<br>Drop image here</div>
-                <div class="gallery-caption"><span>SPIE Medical Imaging 2024</span></div>
-            </div>
-            
-            <!-- Photo 6 - SPIE 2024 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">SPIE 2024<br>Drop image here</div>
-                <div class="gallery-caption"><span>SPIE Medical Imaging 2024</span></div>
-            </div>
-            
-            <!-- Photo 7 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Conference<br>Drop image here</div>
-                <div class="gallery-caption"><span>Conference Presentation</span></div>
-            </div>
-            
-            <!-- Photo 8 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Conference<br>Drop image here</div>
-                <div class="gallery-caption"><span>Conference Presentation</span></div>
-            </div>
-            
-            <!-- Photo 9 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Conference<br>Drop image here</div>
-                <div class="gallery-caption"><span>Conference Presentation</span></div>
-            </div>
-            
-            <!-- Photo 10 -->
-            <div class="gallery-item">
-                <div class="gallery-placeholder">Conference<br>Drop image here</div>
-                <div class="gallery-caption"><span>Conference Presentation</span></div>
+                <img src="assets/conference/spie-2024-award.jpg" alt="SPIE Medical Imaging 2024 - Best Scientific Poster Award">
+                <div class="gallery-caption">
+                    <span class="caption-title">SPIE 2024 — Best Paper Award</span>
+                    <span class="caption-desc">Awarded Best Scientific Poster for our work on anatomical landmark detection using transformer networks</span>
+                </div>
             </div>
         </div>
     </section>
