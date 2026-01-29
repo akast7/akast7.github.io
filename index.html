@@ -1,1316 +1,1279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhil Kasturi — AI & Medical Imaging Researcher</title>
-    
-    <!-- Fonts: Editorial combination -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --ink: #1a1a1a;
-            --paper: #f7f5f2;
-            --cream: #ebe7e0;
-            --accent: #8b4513;
-            --accent-light: #d4a574;
-            --muted: #6b6b6b;
-            --border: #d4d0c8;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--paper);
-            color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
-            overflow-x: hidden;
-        }
-        
-        /* Grain overlay for texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.03;
-            z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-        
-        ::selection {
-            background: var(--accent-light);
-            color: var(--ink);
-        }
-        
-        a {
-            color: var(--ink);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        a:hover {
-            color: var(--accent);
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            mix-blend-mode: difference;
-        }
-        
-        .logo {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.1rem;
-            letter-spacing: 0.02em;
-            color: white;
-        }
-        
-        nav {
-            display: flex;
-            gap: 2.5rem;
-        }
-        
-        nav a {
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: white;
-            position: relative;
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-        }
-        
-        .hero-left {
-            background: var(--ink);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 4rem;
-            position: relative;
-        }
-        
-        .hero-left::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, var(--muted), transparent);
-        }
-        
-        .hero-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--paper);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-title em {
-            font-style: italic;
-            color: var(--accent-light);
-        }
-        
-        .hero-subtitle {
-            font-size: 0.9rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-        
-        .hero-right {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 4rem;
-            background: var(--paper);
-        }
-        
-        .hero-image {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            filter: grayscale(20%);
-            margin-bottom: 2rem;
-        }
-        
-        .hero-bio {
-            max-width: 500px;
-        }
-        
-        .hero-bio p {
-            color: var(--muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .hero-links a {
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        /* Section styling */
-        section {
-            padding: 8rem 4rem;
-            position: relative;
-        }
-        
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .section-label::before {
-            content: '';
-            width: 30px;
-            height: 1px;
-            background: var(--border);
-        }
-        
-        .section-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-        
-        .section-title em {
-            font-style: italic;
-        }
-        
-        /* News Section */
-        #news {
-            background: var(--cream);
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .news-item {
-            padding: 2rem 0;
-            border-top: 1px solid var(--border);
-            transition: transform 0.3s ease;
-        }
-        
-        .news-item:hover {
-            transform: translateX(10px);
-        }
-        
-        .news-date {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        
-        .news-headline {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            line-height: 1.4;
-            margin-bottom: 0.75rem;
-        }
-        
-        .news-desc {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-        
-        /* Projects Section */
-        #projects {
-            background: var(--paper);
-        }
-        
-        .project-featured {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 4rem;
-            padding-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .project-featured-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .project-badge {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 0.4rem 0.8rem;
-            background: var(--accent);
-            color: var(--paper);
-            margin-bottom: 1.5rem;
-            align-self: flex-start;
-        }
-        
-        .project-featured h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.2rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-featured p {
-            color: var(--muted);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        
-        .project-status {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .status-tag {
-            font-size: 0.75rem;
-            padding: 0.3rem 0.7rem;
-            border: 1px solid var(--border);
-            color: var(--muted);
-        }
-        
-        .status-tag.highlight {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        .project-visual {
-            background: var(--ink);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
-        
-        .project-visual-placeholder {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3rem;
-            color: var(--paper);
-            opacity: 0.3;
-        }
-        
-        /* Other projects grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .project-card {
-            padding: 2rem;
-            background: var(--cream);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 0;
-            background: var(--accent);
-            transition: height 0.3s ease;
-        }
-        
-        .project-card:hover::before {
-            height: 100%;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.5rem;
-            color: var(--border);
-            margin-bottom: 1rem;
-        }
-        
-        .project-card h4 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-        
-        .project-card p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-papers {
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Conferences Section */
-        #conferences {
-            background: var(--ink);
-            color: var(--paper);
-        }
-        
-        #conferences .section-label {
-            color: var(--muted);
-        }
-        
-        #conferences .section-label::before {
-            background: var(--muted);
-        }
-        
-        #conferences .section-title {
-            color: var(--paper);
-        }
-        
-        .conference-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 4rem;
-        }
-        
-        .gallery-item {
-            background: #2a2a2a;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            aspect-ratio: 4/3;
-        }
-        
-        .gallery-item.featured {
-            grid-column: span 1;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease, filter 0.3s ease;
-            filter: grayscale(20%);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
-        .gallery-caption span {
-            font-size: 0.85rem;
-            color: var(--paper);
-            display: block;
-        }
-        
-        .gallery-caption .caption-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .gallery-caption .caption-desc {
-            font-size: 0.8rem;
-            color: var(--muted);
-            line-height: 1.4;
-        }
-        
-        /* Publications Section */
-        #publications {
-            background: var(--paper);
-        }
-        
-        .pub-filters {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .pub-filter {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .pub-filter:hover,
-        .pub-filter.active {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-        }
-        
-        .pub-list {
-            max-width: 900px;
-        }
-        
-        .pub-year {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3rem;
-            color: var(--border);
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .pub-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 1.5rem;
-            align-items: start;
-            transition: background 0.2s;
-        }
-        
-        .pub-item:hover {
-            background: var(--cream);
-            margin: 0 -1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        
-        .pub-marker {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            margin-top: 0.5rem;
-        }
-        
-        .pub-marker.first-author {
-            background: var(--accent);
-        }
-        
-        .pub-marker.co-author {
-            background: var(--border);
-        }
-        
-        .pub-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pub-authors {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 0.3rem;
-        }
-        
-        .pub-authors strong {
-            color: var(--ink);
-        }
-        
-        .pub-venue {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: var(--muted);
-        }
-        
-        .pub-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            white-space: nowrap;
-        }
-        
-        /* About Section */
-        #about {
-            background: var(--cream);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 6rem;
-            margin-top: 4rem;
-        }
-        
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            max-width: 600px;
-        }
-        
-        .about-text p:first-of-type {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.4rem;
-            line-height: 1.5;
-        }
-        
-        .about-details h4 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .about-details h4:first-child {
-            margin-top: 0;
-        }
-        
-        .about-details p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--ink);
-            color: var(--paper);
-            padding: 4rem;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-        
-        .footer-left h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-left p {
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-links a {
-            color: var(--paper);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-        
-        .footer-bottom {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-left {
-                min-height: 60vh;
-            }
-            
-            .project-featured {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .conference-gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem 1.5rem;
-            }
-            
-            nav {
-                gap: 1.5rem;
-            }
-            
-            section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .conference-gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-item {
-                aspect-ratio: 16/10;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akhil Kasturi — AI & Medical Imaging Researcher</title>
+
+  <!-- Fonts: Editorial combination -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f7f5f2;
+      --cream: #ebe7e0;
+      --accent: #8b4513;
+      --accent-light: #d4a574;
+      --muted: #6b6b6b;
+      --border: #d4d0c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay for texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      background: var(--accent-light);
+      color: var(--ink);
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+    }
+
+    .logo {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: white;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .hero-left {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem;
+      position: relative;
+    }
+
+    .hero-left::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--muted),
+        transparent
+      );
+    }
+
+    .hero-title {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--paper);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem;
+      background: var(--paper);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(20%);
+      margin-bottom: 2rem;
+    }
+
+    .hero-bio {
+      max-width: 500px;
+    }
+
+    .hero-bio p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Section styling */
+    section {
+      padding: 8rem 4rem;
+      position: relative;
+    }
+
+    .section-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+    }
+
+    /* News Section */
+    #news {
+      background: var(--cream);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .news-item {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+
+    .news-item:hover {
+      transform: translateX(10px);
+    }
+
+    .news-date {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .news-headline {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .news-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Projects Section */
+    #projects {
+      background: var(--paper);
+    }
+
+    .project-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-badge {
+      display: inline-block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      background: var(--accent);
+      color: var(--paper);
+      margin-bottom: 1.5rem;
+      align-self: flex-start;
+    }
+
+    .project-featured h3 {
+      font-family: "Instrument Serif", serif;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-featured p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .project-status {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .status-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .status-tag.highlight {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-visual {
+      background: var(--ink);
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    /* Other projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .project-card {
+      padding: 2rem;
+      background: var(--cream);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-number {
+      font-family: "Instrument Serif", serif;
+      font-size: 2.5rem;
+      color: var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .project-card h4 {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-papers {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* Conferences Section */
+    #conferences {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    #conferences .section-label {
+      color: var(--muted);
+    }
+
+    #conferences .section-label::before {
+      background: var(--muted);
+    }
+
+    #conferences .section-title {
+      color: var(--paper);
+    }
+
+    .conference-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .gallery-item {
+      background: #2a2a2a;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      filter: grayscale(20%);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    .gallery-caption span {
+      font-size: 0.85rem;
+      color: var(--paper);
+      display: block;
+    }
+
+    .gallery-caption .caption-title {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .gallery-caption .caption-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* =========================
+       Poster Presentations
+    ========================== */
+    #posters {
+      background: var(--paper);
+    }
+
+    .posters-wrap {
+      margin-top: 4rem;
+      max-width: 1100px;
+    }
+
+    .posters-subtitle {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .posters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .poster-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      transition: transform 0.25s ease;
+    }
+
+    .poster-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .poster-thumb {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      background: white;
+      margin-bottom: 1rem;
+    }
+
+    .poster-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .poster-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .poster-title {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.25rem;
+      line-height: 1.35;
+    }
+
+    .poster-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .poster-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .poster-links a {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+    }
+
+    .poster-links a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Publications Section */
+    #publications {
+      background: var(--paper);
+    }
+
+    .pub-filters {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-filter {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pub-filter:hover,
+    .pub-filter.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .pub-list {
+      max-width: 900px;
+    }
+
+    .pub-year {
+      font-family: "Instrument Serif", serif;
+      font-size: 3rem;
+      color: var(--border);
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pub-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .pub-item:hover {
+      background: var(--cream);
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .pub-marker {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      margin-top: 0.5rem;
+    }
+
+    .pub-marker.co-author {
+      background: var(--border);
+    }
+
+    .pub-title {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .pub-authors strong {
+      color: var(--ink);
+    }
+
+    .pub-venue {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .pub-link {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* About Section */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6rem;
+      margin-top: 4rem;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+
+    .about-text p:first-of-type {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .about-details h4 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .about-details h4:first-child {
+      margin-top: 0;
+    }
+
+    .about-details p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 4rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-left h3 {
+      font-family: "Instrument Serif", serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-left p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--paper);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-bottom {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left {
+        min-height: 60vh;
+      }
+
+      .project-featured {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .conference-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .posters-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      nav {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .conference-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item {
+        aspect-ratio: 16/10;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    .delay-4 {
+      animation-delay: 0.4s;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">AK</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#news">News</a>
-            <a href="#projects">Projects</a>
-            <a href="#conferences">Conferences</a>
-            <a href="#publications">Publications</a>
-        </nav>
-    </header>
-    
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-left">
-            <p class="hero-subtitle">PhD Candidate · University of Rochester</p>
-            <h1 class="hero-title">Akhil<br>Kasturi</h1>
+  <!-- Header -->
+  <header>
+    <div class="logo">AK</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#projects">Projects</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#posters">Posters</a>
+      <a href="#publications">Publications</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-subtitle">PhD Candidate · University of Rochester</p>
+      <h1 class="hero-title">Akhil<br />Kasturi</h1>
+    </div>
+    <div class="hero-right">
+      <img src="assets/profile.jpg" alt="Akhil Kasturi" class="hero-image" />
+      <div class="hero-bio">
+        <p>
+          Developing AI systems that bridge medical imaging and clinical
+          decision-making. My research focuses on building multimodal deep
+          learning methodologies for critical care (ICU) prognostication and
+          diagnostic applications. Research Interests: Generative AI, Automatic
+          Radiology Report Generation, Visual Grounding, Landmark Detection,
+          Object Localization, etc.
+        </p>
+        <div class="hero-links">
+          <a href="mailto:akasturi@ur.rochester.edu">Email</a>
+            <a href="https://scholar.google.com/citations?user=_-CUcbYAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
+          <a href="https://github.com/akast7" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/akhil-k-21069711b/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <div class="hero-right">
-            <img src="assets/profile.jpg" alt="Akhil Kasturi" class="hero-image">
-            <div class="hero-bio">
-                <p>Developing AI systems that bridge medical imaging and clinical decision-making. My research focuses on building multimodal deep learning methodologies for critical care (ICU) prognostication and diagnostic applications.Research Interst: Gnerative AI, Automatic Radiology Report Generation, Visual Grounding, Landmark Detection, Object Localization, etc.</p>
-                <div class="hero-links">
-                    <a href="mailto:akasturi@ur.rochester.edu">Email</a>
-                    <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">Scholar</a>
-                    <a href="https://github.com/akast7" target="_blank">GitHub</a>
-                    <a href="https://www.linkedin.com/in/akhil-k-21069711b/" target="_blank">LinkedIn</a>
-                </div>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <span class="section-label">01 — About</span>
+    <h2 class="section-title">Building <em>intelligent</em><br />clinical systems</h2>
+
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          I am a PhD candidate at the University of Rochester working at the
+          intersection of artificial intelligence, medical imaging, and clinical
+          decision-making.
+        </p>
+        <p>
+          My research develops deep learning frameworks that integrate multimodal
+          data—CT imaging, EEG, clinical text, and patient history—to solve
+          high-stakes challenges in neurological prognostication. I am
+          particularly interested in how foundational models can be adapted for
+          early disease prediction and clinical decision support.
+        </p>
+        <p>
+          I am advised by Prof. Axel Wismüller in the AI in Radiology Laboratory,
+          Department of Imaging Sciences. My work has been recognized with the
+          Best Scientific Poster Award at SPIE Medical Imaging.
+        </p>
+      </div>
+
+      <div class="about-details">
+        <h4>Education</h4>
+        <p>
+          PhD, Machine Learning & Artificial Engineering (Dept. of ECE)<br />
+          University of Rochester (Expected 2028)
+        </p>
+        <p>
+          M.S, Machine Learning & Artificial Engineering (Dept. of ECE)<br />
+          University of Rochester
+        </p>
+        <p>
+          M.Eng., Advanced Signal & Image Processing (Dept. of ECE)<br />
+          Western University
+        </p>
+
+        <h4>Affiliation</h4>
+        <p>
+          Wismüller Lab,<br />
+          AI in Radiology Laboratory,<br />
+          Dept. of Electrical and Computer Engineering,<br />
+          Dept. of Imaging Sciences
+        </p>
+
+        <h4>Contact</h4>
+        <p>akasturi@ur.rochester.edu</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="news">
+    <span class="section-label">02 — News</span>
+    <h2 class="section-title">Latest <em>updates</em></h2>
+
+    <div class="news-grid">
+      <div class="news-item">
+        <span class="news-date">February 2026</span>
+        <h3 class="news-headline">SPIE Medical Imaging 2026 — Medical AI Poster Presentation</h3>
+        <p class="news-desc">
+          Presented poster on ICU mortality prediction using fine-tuned LLaMA-based large language models trained on structured
+          EHR variables (APACHE IV/CCI-derived features) for rapid, clinically actionable risk stratification.
+        </p>
+      </div>
+
+      <div class="news-item">
+        <span class="news-date">February 2026</span>
+        <h3 class="news-headline">SPIE Medical Imaging 2026 — Medical AI Oral Presentation</h3>
+        <p class="news-desc">
+          Delivered oral presentation on interpretable neurological prognostication using a ClinicalBERT framework with leave-one-feature-out
+          analysis to quantify key post–cardiac arrest predictors for early outcome prediction.
+        </p>
+      </div>
+
+      <div class="news-item">
+        <span class="news-date">December 2025</span>
+        <h3 class="news-headline">RSNA 2025 Presentation</h3>
+        <p class="news-desc">
+          Presented CT-MAE research on masked autoencoders for early neurological outcome prediction at the Radiological Society of North America
+          Annual Meeting in Chicago.
+        </p>
+      </div>
+
+      <div class="news-item">
+        <span class="news-date">November 2025</span>
+        <h3 class="news-headline">Multi-Institutional Collaboration</h3>
+        <p class="news-desc">
+          Partnering with Yale University and UC Irvine to build one of the largest datasets in neurological prognostication—integrating CT, MRI, EEG,
+          and clinical EMR data.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <span class="section-label">03 — Research</span>
+    <h2 class="section-title">Selected <em>projects</em></h2>
+
+    <div class="project-featured">
+      <div class="project-featured-content">
+        <span class="project-badge">Featured Project</span>
+        <h3>Multimodal AI for Clinical Prognostication</h3>
+        <p>
+          Developed CLAIR (Contrastive Language and Image Reasoning), a novel multimodal framework that integrates head CT imaging with clinical patient data
+          through a cross-attention mechanism for neurological prognostication.
+        </p>
+        <p>
+          CLAIR is the first model of its kind to enable accurate neurological prognostication within 24 hours post-cardiac arrest—an improvement over the
+          current 72-hour clinical standard. Achieved state-of-the-art AUC-ROC of 0.94.
+        </p>
+        <p>
+          Currently collaborating with Yale University and UC Irvine to build one of the largest multimodal datasets in this field, integrating CT, MRI, EEG,
+          and EMR data for CLAIR 2.0 development.
+        </p>
+        <div class="project-status">
+          <span class="status-tag highlight">Under Review — Nature Scientific Reports</span>
+          <span class="status-tag">AUC-ROC: 0.94</span>
+          <span class="status-tag">Multi-institutional</span>
         </div>
-    </section>
-    
-    <!-- About -->
-    <section id="about">
-        <span class="section-label">01 — About</span>
-        <h2 class="section-title">Building <em>intelligent</em><br>clinical systems</h2>
-        
-        <div class="about-content">
-            <div class="about-text">
-                <p>I am a PhD candidate at the University of Rochester working at the intersection of artificial intelligence, medical imaging, and clinical decision-making.</p>
-                <p>My research develops deep learning frameworks that integrate multimodal data—CT imaging, EEG, clinical text, and patient history—to solve high-stakes challenges in neurological prognostication. I am particularly interested in how foundational models can be adapted for early disease prediction and clinical decision support.</p>
-                <p>I am advised by Prof. Axel Wismüller in the AI in Radiology Laboratory, Department of Imaging Sciences. My work has been recognized with the Best Scientific Poster Award at SPIE Medical Imaging.</p>
-            </div>
-            <div class="about-details">
-                <h4>Education</h4>
-                <p>PhD, Electrical & Computer Engineering<br>University of Rochester (Expected 2026)</p>
-                <p>M.Eng., Signal & Image Processing<br>Western University</p>
-                
-                <h4>Affiliation</h4>
-                <p>Wismüller Lab,<br>AI in Radiology Laboratory,<br>Dept. of Electrical and Computer Engineering,</p>Dept. of Imaging Sciences</p>
-                
-                <h4>Contact</h4>
-                <p>akasturi@ur.rochester.edu</p>
-            </div>
+      </div>
+      <div class="project-visual">
+        <img src="assets/CLAIR2.png" alt="CLAIR - Multimodal AI Framework" />
+      </div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-number">02</span>
+        <h4>Radiology Report Generation</h4>
+        <p>
+          Developed BioVLM-T, a temporal vision-language framework leveraging historical patient data to generate contextually-aware radiology reports for chest X-rays.
+        </p>
+        <span class="project-papers">SPIE Medical Imaging 2025</span>
+      </div>
+
+      <div class="project-card">
+        <span class="project-number">03</span>
+        <h4>Lines & Tubes Detection in ICU</h4>
+        <p>
+          Designed ETT-LDx, a transformer-based system for precise detection, segmentation, and placement verification of endotracheal tubes and medical devices in chest radiographs.
+        </p>
+        <span class="project-papers">4 Papers · SPIE 2024–2025</span>
+      </div>
+
+      <div class="project-card">
+        <span class="project-number">04</span>
+        <h4>Brain Connectivity Analysis</h4>
+        <p>
+          Multi-voxel pattern analysis using functional MRI. Developed MCA-LM for autism classification and contributed to Granger causality methods (lsAGC, lsNGC)
+          for schizophrenia and consciousness research.
+        </p>
+        <span class="project-papers">10+ Papers · NeuroImage 2025</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conferences -->
+  <section id="conferences">
+    <span class="section-label">04 — Conferences</span>
+    <h2 class="section-title">Conference <em>gallery</em></h2>
+
+    <div class="conference-gallery">
+      <div class="gallery-item">
+        <img src="assets/conference/rsna-2025-1.jpg" alt="RSNA 2025 - Presenting with Dr. Axel Wismüller" />
+        <div class="gallery-caption">
+          <span class="caption-title">RSNA 2025 — Chicago</span>
+          <span class="caption-desc">
+            Presenting our digital poster on multimodal methods for early neurological prognostication in post-cardiac arrest patients with Dr. Axel Wismüller
+          </span>
         </div>
-    </section>
-    
-    <!-- News -->
-    <section id="news">
-        <span class="section-label">02 — News</span>
-        <h2 class="section-title">Latest <em>updates</em></h2>
-        
-        <div class="news-grid">
-            <div class="news-item">
-                <span class="news-date">December 2025</span>
-                <h3 class="news-headline">RSNA 2025 Presentation</h3>
-                <p class="news-desc">Presented CT-MAE research on masked autoencoders for early neurological outcome prediction at the Radiological Society of North America Annual Meeting in Chicago.</p>
-            </div>
-            
-            <div class="news-item">
-                <span class="news-date">November 2025</span>
-                <h3 class="news-headline">Multi-Institutional Collaboration</h3>
-                <p class="news-desc">Partnering with Yale University and UC Irvine to build one of the largest datasets in neurological prognostication—integrating CT, MRI, EEG, and clinical EMR data.</p>
-            </div>
-              <div class="news-item">
-                <span class="news-date">2025</span>
-                <h3 class="news-headline">CLAIR 2.0 Development</h3>
-                <p class="news-desc">Working towards an advanced large-scale vision-language model for neurological prognostication, leveraging our expanded multi-institutional dataset.</p>
-            </div>
-            
-            <div class="news-item">
-                <span class="news-date">October 2025</span>
-                <h3 class="news-headline">CLAIR Under Review at Nature Scientific Reports</h3>
-                <p class="news-desc">Our multimodal framework for early neurological prognostication in post-cardiac arrest patients is currently under review at Nature Scientific Reports.</p>
-            </div>
-            
-            <div class="news-item">
-                <span class="news-date">February 2025</span>
-                <h3 class="news-headline">SPIE Medical Imaging 2025</h3>
-                <p class="news-desc">Presented multiple papers on vision-language models for radiology report generation and transformer-based landmark detection systems.</p>
-            </div>
-            
-            
-            <div class="news-item">
-                <span class="news-date">2024</span>
-                <h3 class="news-headline">Best Scientific Poster Award</h3>
-                <p class="news-desc">Received Best Scientific Poster Award at SPIE Medical Imaging for work on transformer-based anatomical landmark detection.</p>
-            </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/conference/spie-2024-1.jpg" alt="SPIE Medical Imaging 2024 - ETT-LDx Presentation" />
+        <div class="gallery-caption">
+          <span class="caption-title">SPIE Medical Imaging 2024</span>
+          <span class="caption-desc">Presenting ETT-LDx — our anatomical landmark detection system for endotracheal tube placement assessment</span>
         </div>
-    </section>
-    
-    <!-- Projects -->
-    <section id="projects">
-        <span class="section-label">03 — Research</span>
-        <h2 class="section-title">Selected <em>projects</em></h2>
-        
-        <!-- Featured Project: CLAIR -->
-        <div class="project-featured">
-            <div class="project-featured-content">
-                <span class="project-badge">Featured Project</span>
-                <h3>Multimodal AI for Clinical Prognostication</h3>
-                <p>Developed CLAIR (Contrastive Language and Image Reasoning), a novel multimodal framework that integrates head CT imaging with clinical patient data through a cross-attention mechanism for neurological prognostication.</p>
-                <p>CLAIR is the first model of its kind to enable accurate neurological prognostication within 24 hours post-cardiac arrest—a significant improvement over the current 72-hour clinical standard. Achieved state-of-the-art AUC-ROC of 0.94.</p>
-                <p>Currently collaborating with Yale University and UC Irvine to build one of the largest multimodal datasets in this field, integrating CT, MRI, EEG, and EMR data for CLAIR 2.0 development.</p>
-                <div class="project-status">
-                    <span class="status-tag highlight">Under Review — Nature Scientific Reports</span>
-                    <span class="status-tag">AUC-ROC: 0.94</span>
-                    <span class="status-tag">Multi-institutional</span>
-                </div>
-            </div>
-            <div class="project-visual">
-                <img src="assets/CLAIR2.png" alt="CLAIR - Multimodal AI Framework">
-            </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/conference/spie-2024-award.jpg" alt="SPIE Medical Imaging 2024 - Best Scientific Poster Award" />
+        <div class="gallery-caption">
+          <span class="caption-title">SPIE 2024 — Best Paper Award</span>
+          <span class="caption-desc">Awarded Best Scientific Poster for our work on anatomical landmark detection using transformer networks</span>
         </div>
-        
-        <!-- Other Projects -->
-        <div class="projects-grid">
-            <div class="project-card">
-                <span class="project-number">02</span>
-                <h4>Radiology Report Generation</h4>
-                <p>Developed BioVLM-T, a temporal vision-language framework leveraging historical patient data to generate contextually-aware radiology reports for chest X-rays.</p>
-                <span class="project-papers">SPIE Medical Imaging 2025</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posters -->
+  <section id="posters">
+    <span class="section-label">04B — Posters</span>
+    <h2 class="section-title">Poster <em>presentations</em></h2>
+
+    <div class="posters-wrap">
+      <h3 class="posters-subtitle">SPIE Medical Imaging — Posters</h3>
+
+      <div class="posters-grid">
+        <!-- Poster 1 -->
+        <div class="poster-card">
+          <a href="assets/posters/spie-2024-landmark-detection.jpg" target="_blank" rel="noopener">
+            <img
+              class="poster-thumb"
+              src="assets/posters/spie-2024-landmark-detection.jpg"
+              alt="Poster: Anatomical Landmark Detection in Chest X-rays using Transformer-based Networks"
+            />
+          </a>
+
+          <div class="poster-meta">
+            <div class="poster-tag">Poster · SPIE Medical Imaging 2024</div>
+            <div class="poster-title">Anatomical Landmark Detection in Chest X-rays using Transformer-based Networks</div>
+            <div class="poster-desc">
+              Transformer-UNet (TransUNet) landmark localization with Gaussian heatmaps; focus on robustness under indwelling lines/tubes and abnormal CXRs.
             </div>
-            
-            <div class="project-card">
-                <span class="project-number">03</span>
-                <h4>Lines & Tubes Detection in ICU</h4>
-                <p>Designed ETT-LDx, a transformer-based system for precise detection, segmentation, and placement verification of endotracheal tubes and medical devices in chest radiographs.</p>
-                <span class="project-papers">4 Papers · SPIE 2024–2025</span>
+
+            <div class="poster-links">
+              <a href="assets/posters/spie-2024-landmark-detection.jpg" target="_blank" rel="noopener">View Poster →</a>
             </div>
-            
-            <div class="project-card">
-                <span class="project-number">04</span>
-                <h4>Brain Connectivity Analysis</h4>
-                <p>Multi-Voxel pattern analysis using functional MRI. Developed MCA-LM for autism classification and contributed to Granger causality methods (lsAGC, lsNGC) for schizophrenia and consciousness research.</p>
-                <span class="project-papers">10+ Papers · NeuroImage 2025</span>
-            </div>
+          </div>
         </div>
-    </section>
-    
-    <!-- Conferences -->
-    <section id="conferences">
-        <span class="section-label">04 — Conferences</span>
-        <h2 class="section-title">Conference <em>gallery</em></h2>
-        
-        <div class="conference-gallery">
-            <!-- Photo 1 - RSNA 2025 -->
-            <div class="gallery-item">
-                <img src="assets/conference/rsna-2025-1.jpg" alt="RSNA 2025 - Presenting with Dr. Axel Wismüller">
-                <div class="gallery-caption">
-                    <span class="caption-title">RSNA 2025 — Chicago</span>
-                    <span class="caption-desc">Presenting our digital poster on multimodal methods for early neurological prognostication in post-cardiac arrest patients with Dr. Axel Wismüller</span>
-                </div>
+
+        <!-- Poster 2 -->
+        <div class="poster-card">
+          <a href="assets/posters/spie-2026-icu-mortality-llama.jpg" target="_blank" rel="noopener">
+            <img
+              class="poster-thumb"
+              src="assets/posters/spie-2026-icu-mortality-llama.jpg"
+              alt="Poster: ICU Mortality Prediction Using Fine-Tuned Large Language Models on Structured Clinical Data"
+            />
+          </a>
+
+          <div class="poster-meta">
+            <div class="poster-tag">Poster · SPIE Medical Imaging 2026</div>
+            <div class="poster-title">ICU Mortality Prediction Using Fine-Tuned Large Language Models on Structured Clinical Data</div>
+            <div class="poster-desc">
+              Fine-tuned LLaMA-based models on structured ICU variables (APACHE IV/CCI-derived) to enable rapid, clinically actionable risk stratification without note latency.
             </div>
-            
-            <!-- Photo 2 - SPIE 2024 Presentation -->
-            <div class="gallery-item">
-                <img src="assets/conference/spie-2024-1.jpg" alt="SPIE Medical Imaging 2024 - ETT-LDx Presentation">
-                <div class="gallery-caption">
-                    <span class="caption-title">SPIE Medical Imaging 2024</span>
-                    <span class="caption-desc">Presenting ETT-LDx — our anatomical landmark detection system for endotracheal tube placement assessment</span>
-                </div>
+
+            <div class="poster-links">
+              <a href="assets/posters/spie-2026-icu-mortality-llama.jpg" target="_blank" rel="noopener">View Poster →</a>
             </div>
-            
-            <!-- Photo 3 - SPIE 2024 Award -->
-            <div class="gallery-item">
-                <img src="assets/conference/spie-2024-award.jpg" alt="SPIE Medical Imaging 2024 - Best Scientific Poster Award">
-                <div class="gallery-caption">
-                    <span class="caption-title">SPIE 2024 — Best Paper Award</span>
-                    <span class="caption-desc">Awarded Best Scientific Poster for our work on anatomical landmark detection using transformer networks</span>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-    
-    <!-- Publications -->
-    <section id="publications">
-        <span class="section-label">05 — Publications</span>
-        <h2 class="section-title">Research <em>output</em></h2>
-        
-        <div class="pub-filters">
-            <button class="pub-filter active" data-filter="all">All</button>
-            <button class="pub-filter" data-filter="first">First Author</button>
-            <button class="pub-filter" data-filter="2025">2025</button>
-            <button class="pub-filter" data-filter="2024">2024</button>
-            <button class="pub-filter" data-filter="2023">2023</button>
-        </div>
-        
-        <div class="pub-list">
-            <!-- 2025 -->
-            <h3 class="pub-year">2025</h3>
-            
-            <div class="pub-item" data-year="2025" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Multimodal Contrastive Prognostication Framework for Early Neurological Outcome Prediction in Post-Cardiac Arrest Patients (CLAIR)</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, et al.</p>
-                    <p class="pub-venue">Under Review — Nature Scientific Reports</p>
-                </div>
-                <a href="#" class="pub-link">Preprint →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Masked autoencoders for early neurological outcome prediction in post-cardiac arrest patients using brain CT scan</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, et al.</p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">BioVLM-T: A temporal framework for radiology report generation using pre-trained vision language foundational models</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
-                </div>
-                <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13410/134100W/BioVLM-T--A-temporal-framework-for-radiology-report-generation/10.1117/12.3047498.full" class="pub-link" target="_blank">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">ETT-LDx: Transformer-based landmark detection system for endotracheal tube placement verification in chest radiographs</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Inferring causal relations from multivariate data using Large-Scale Augmented Granger Causality (lsAGC)</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
-                    <p class="pub-venue">NeuroImage, 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Uncertainty quantification and out-of-distribution detection in skin and breast lesion diagnostics using conformal prediction</p>
-                    <p class="pub-authors">Nathan Hadjiyski, C. Kanan, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Large-scale nonlinear Granger causality (lsNGC) analysis of functional MRI data for schizophrenia classification</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
-                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Analysis of brain connectivity in autism spectrum disorder using large-scale non-linear Granger causality (lsNGC)</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2025" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Large-scale augmented Granger causality (lsAGC) for enhanced analysis of brain connectivity in autism spectrum disorder</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <!-- 2024 -->
-            <h3 class="pub-year">2024</h3>
-            
-            <div class="pub-item" data-year="2024" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Functional connectivity-based classification of autism spectrum disorder using mutual connectivity analysis with local models</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, Axel Wismüller</p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Anatomical landmark detection in chest x-ray images using transformer-based networks</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Classification of endotracheal tube position in chest x-rays images</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Segmentation of catheter tubes and lines in chest x-rays using deep learning models</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Leveraging a memory-driven transformer for efficient radiology report generation from chest x-rays to establish a quantitative metric</p>
-                    <p class="pub-authors">Nathan Hadjiyski, <strong>Akhil Kasturi</strong>, Ali Vosoughi, Axel Wismüller</p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Enhancing graph attention neural network performance for marijuana consumption classification through lsAGC analysis of functional MR images</p>
-                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2024" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Graph attention transformers and large-scale Granger causality to classify marijuana consumption from functional MR images</p>
-                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <!-- 2023 -->
-            <h3 class="pub-year">2023</h3>
-            
-            <div class="pub-item" data-year="2023" data-type="first">
-                <div class="pub-marker first-author"></div>
-                <div>
-                    <p class="pub-title">Detecting landmarks in anatomical medical images using transformer-based networks</p>
-                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Leveraging large-scale Granger causality and neural networks to measure the level of consciousness in DOC patients</p>
-                    <p class="pub-authors">Ali Vosoughi, T. Raiser, T. Luther, et al., <strong>Akhil Kasturi</strong></p>
-                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Identification of schizophrenia patients using large-scale extended Granger causality (lsXGC) in functional MR imaging</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
-                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Large-scale Granger causality (lsGC) for classification of schizophrenia using functional MRI</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
-                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Large-scale augmented Granger causality (lsAGC) for discovery of causal brain connectivity networks in schizophrenia patients using functional MRI neuroimaging</p>
-                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
-                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Classification of schizophrenia using large-scale kernelized Granger causality (lsKGC) and functional MR imaging</p>
-                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski, Axel Wismüller</p>
-                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-            
-            <div class="pub-item" data-year="2023" data-type="co">
-                <div class="pub-marker co-author"></div>
-                <div>
-                    <p class="pub-title">Tracking the impact of global iodinated contrast agent shortage on radiology: analysis of CT exam volumes at a major US healthcare system</p>
-                    <p class="pub-authors">Axel Wismüller, J. Avondo, Larry Stockmaster, <strong>Akhil Kasturi</strong>, Ali Vosoughi</p>
-                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
-                </div>
-                <a href="#" class="pub-link">Paper →</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <h3>Let's connect</h3>
-                <p>Open to research collaborations and<br>industry partnerships.</p>
-            </div>
-            <div class="footer-links">
-                <a href="mailto:akasturi@ur.rochester.edu">Email</a>
-                <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
-                <a href="https://github.com/akast7" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2025 Akhil Kasturi · University of Rochester
-        </div>
-    </footer>
-    
-    <!-- JavaScript for filtering -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Publication filtering
-            const filters = document.querySelectorAll('.pub-filter');
-            const pubItems = document.querySelectorAll('.pub-item');
-            const pubYears = document.querySelectorAll('.pub-year');
-            
-            filters.forEach(filter => {
-                filter.addEventListener('click', () => {
-                    // Update active state
-                    filters.forEach(f => f.classList.remove('active'));
-                    filter.classList.add('active');
-                    
-                    const filterValue = filter.dataset.filter;
-                    
-                    // Show/hide publications
-                    pubItems.forEach(item => {
-                        const year = item.dataset.year;
-                        const type = item.dataset.type;
-                        
-                        if (filterValue === 'all') {
-                            item.style.display = 'grid';
-                        } else if (filterValue === 'first') {
-                            item.style.display = type === 'first' ? 'grid' : 'none';
-                        } else {
-                            item.style.display = year === filterValue ? 'grid' : 'none';
-                        }
-                    });
-                    
-                    // Show/hide year headers
-                    pubYears.forEach(yearHeader => {
-                        const year = yearHeader.textContent;
-                        const hasVisibleItems = Array.from(pubItems).some(item => 
-                            item.dataset.year === year && item.style.display !== 'none'
-                        );
-                        yearHeader.style.display = hasVisibleItems ? 'block' : 'none';
-                    });
-                });
-            });
-            
-            // Smooth scroll for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications (your full publications section can be pasted here as-is) -->
+  <section id="publications">
+    <span class="section-label">05 — Publications</span>
+    <h2 class="section-title">Research <em>output</em></h2>
+
+    <div class="pub-filters">
+      <button class="pub-filter active" data-filter="all">All</button>
+      <button class="pub-filter" data-filter="first">First Author</button>
+      <button class="pub-filter" data-filter="2025">2025</button>
+      <button class="pub-filter" data-filter="2024">2024</button>
+      <button class="pub-filter" data-filter="2023">2023</button>
+    </div>
+
+    <!-- Keep your existing publications markup here -->
+    <div class="pub-list">
+      <!-- paste your full publication list here (unchanged) -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <h3>Let's connect</h3>
+        <p>Open to research collaborations and<br />industry partnerships.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:akasturi@ur.rochester.edu">Email</a>
+        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/akast7" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Akhil Kasturi · University of Rochester</div>
+  </footer>
+
+  <!-- JavaScript for filtering -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Publication filtering
+      const filters = document.querySelectorAll(".pub-filter");
+      const pubItems = document.querySelectorAll(".pub-item");
+      const pubYears = document.querySelectorAll(".pub-year");
+
+      filters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          // Update active state
+          filters.forEach((f) => f.classList.remove("active"));
+          filter.classList.add("active");
+
+          const filterValue = filter.dataset.filter;
+
+          // Show/hide publications
+          pubItems.forEach((item) => {
+            const year = item.dataset.year;
+            const type = item.dataset.type;
+
+            if (filterValue === "all") {
+              item.style.display = "grid";
+            } else if (filterValue === "first") {
+              item.style.display = type === "first" ? "grid" : "none";
+            } else {
+              item.style.display = year === filterValue ? "grid" : "none";
+            }
+          });
+
+          // Show/hide year headers
+          pubYears.forEach((yearHeader) => {
+            const year = yearHeader.textContent;
+            const hasVisibleItems = Array.from(pubItems).some(
+              (item) => item.dataset.year === year && item.style.display !== "none"
+            );
+            yearHeader.style.display = hasVisibleItems ? "block" : "none";
+          });
         });
-    </script>
+      });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
