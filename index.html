@@ -1139,7 +1139,7 @@
           <a href="assets/posters/SPIE_2024_MI_ALDx_v1.jpg" target="_blank" rel="noopener">
             <img
               class="poster-thumb"
-              src="assets/posters/SPIE_M126_ICU_Pred_LLaMA.jpg"
+              src="assets/posters/SPIE_2024_MI_ALDx_v1.jpg"
               alt="Poster: Anatomical Landmark Detection in Chest X-rays using Transformer-based Networks"
             />
           </a>
@@ -1152,17 +1152,17 @@
             </div>
 
             <div class="poster-links">
-              <a href="assets/posters/spie-2024-landmark-detection.jpg" target="_blank" rel="noopener">View Poster →</a>
+              <a href="assets/posters/SPIE_2024_MI_ALDx_v1.jpg" target="_blank" rel="noopener">View Poster →</a>
             </div>
           </div>
         </div>
 
         <!-- Poster 2 -->
         <div class="poster-card">
-          <a href="assets/posters/spie-2026-icu-mortality-llama.jpg" target="_blank" rel="noopener">
+          <a href="assets/posters/SPIE_M126_ICU_Pred_LLaMA.jpg" target="_blank" rel="noopener">
             <img
               class="poster-thumb"
-              src="assets/posters/spie-2026-icu-mortality-llama.jpg"
+              src="assets/posters/SPIE_M126_ICU_Pred_LLaMA.jpg"
               alt="Poster: ICU Mortality Prediction Using Fine-Tuned Large Language Models on Structured Clinical Data"
             />
           </a>
@@ -1175,7 +1175,7 @@
             </div>
 
             <div class="poster-links">
-              <a href="assets/posters/spie-2026-icu-mortality-llama.jpg" target="_blank" rel="noopener">View Poster →</a>
+              <a href="assets/posters/SPIE_M126_ICU_Pred_LLaMA.jpg" target="_blank" rel="noopener">View Poster →</a>
             </div>
           </div>
         </div>
@@ -1183,97 +1183,335 @@
     </div>
   </section>
 
-  <!-- Publications (your full publications section can be pasted here as-is) -->
-  <section id="publications">
-    <span class="section-label">05 — Publications</span>
-    <h2 class="section-title">Research <em>output</em></h2>
-
-    <div class="pub-filters">
-      <button class="pub-filter active" data-filter="all">All</button>
-      <button class="pub-filter" data-filter="first">First Author</button>
-      <button class="pub-filter" data-filter="2025">2025</button>
-      <button class="pub-filter" data-filter="2024">2024</button>
-      <button class="pub-filter" data-filter="2023">2023</button>
-    </div>
-
-    <!-- Keep your existing publications markup here -->
-    <div class="pub-list">
-      <!-- paste your full publication list here (unchanged) -->
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-left">
-        <h3>Let's connect</h3>
-        <p>Open to research collaborations and<br />industry partnerships.</p>
-      </div>
-      <div class="footer-links">
-        <a href="mailto:akasturi@ur.rochester.edu">Email</a>
-        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://github.com/akast7" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-    <div class="footer-bottom">© 2025 Akhil Kasturi · University of Rochester</div>
-  </footer>
-
-  <!-- JavaScript for filtering -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Publication filtering
-      const filters = document.querySelectorAll(".pub-filter");
-      const pubItems = document.querySelectorAll(".pub-item");
-      const pubYears = document.querySelectorAll(".pub-year");
-
-      filters.forEach((filter) => {
-        filter.addEventListener("click", () => {
-          // Update active state
-          filters.forEach((f) => f.classList.remove("active"));
-          filter.classList.add("active");
-
-          const filterValue = filter.dataset.filter;
-
-          // Show/hide publications
-          pubItems.forEach((item) => {
-            const year = item.dataset.year;
-            const type = item.dataset.type;
-
-            if (filterValue === "all") {
-              item.style.display = "grid";
-            } else if (filterValue === "first") {
-              item.style.display = type === "first" ? "grid" : "none";
-            } else {
-              item.style.display = year === filterValue ? "grid" : "none";
-            }
-          });
-
-          // Show/hide year headers
-          pubYears.forEach((yearHeader) => {
-            const year = yearHeader.textContent;
-            const hasVisibleItems = Array.from(pubItems).some(
-              (item) => item.dataset.year === year && item.style.display !== "none"
-            );
-            yearHeader.style.display = hasVisibleItems ? "block" : "none";
-          });
-        });
-      });
-
-      // Smooth scroll for navigation
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+    <!-- Publications -->
+    <section id="publications">
+        <span class="section-label">05 — Publications</span>
+        <h2 class="section-title">Research <em>output</em></h2>
+        
+        <div class="pub-filters">
+            <button class="pub-filter active" data-filter="all">All</button>
+            <button class="pub-filter" data-filter="first">First Author</button>
+            <button class="pub-filter" data-filter="2025">2025</button>
+            <button class="pub-filter" data-filter="2024">2024</button>
+            <button class="pub-filter" data-filter="2023">2023</button>
+        </div>
+        
+        <div class="pub-list">
+            <!-- 2025 -->
+            <h3 class="pub-year">2025</h3>
+            
+            <div class="pub-item" data-year="2025" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Multimodal Contrastive Prognostication Framework for Early Neurological Outcome Prediction in Post-Cardiac Arrest Patients (CLAIR)</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, et al.</p>
+                    <p class="pub-venue">Under Review — Nature Scientific Reports</p>
+                </div>
+                <a href="#" class="pub-link">Preprint →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Masked autoencoders for early neurological outcome prediction in post-cardiac arrest patients using brain CT scan</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, et al.</p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">BioVLM-T: A temporal framework for radiology report generation using pre-trained vision language foundational models</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
+                </div>
+                <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13410/134100W/BioVLM-T--A-temporal-framework-for-radiology-report-generation/10.1117/12.3047498.full" class="pub-link" target="_blank">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">ETT-LDx: Transformer-based landmark detection system for endotracheal tube placement verification in chest radiographs</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Inferring causal relations from multivariate data using Large-Scale Augmented Granger Causality (lsAGC)</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
+                    <p class="pub-venue">NeuroImage, 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Uncertainty quantification and out-of-distribution detection in skin and breast lesion diagnostics using conformal prediction</p>
+                    <p class="pub-authors">Nathan Hadjiyski, C. Kanan, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Large-scale nonlinear Granger causality (lsNGC) analysis of functional MRI data for schizophrenia classification</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
+                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Analysis of brain connectivity in autism spectrum disorder using large-scale non-linear Granger causality (lsNGC)</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2025" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Large-scale augmented Granger causality (lsAGC) for enhanced analysis of brain connectivity in autism spectrum disorder</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong></p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <!-- 2024 -->
+            <h3 class="pub-year">2024</h3>
+            
+            <div class="pub-item" data-year="2024" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Functional connectivity-based classification of autism spectrum disorder using mutual connectivity analysis with local models</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, Axel Wismüller</p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Anatomical landmark detection in chest x-ray images using transformer-based networks</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Classification of endotracheal tube position in chest x-rays images</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Segmentation of catheter tubes and lines in chest x-rays using deep learning models</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Leveraging a memory-driven transformer for efficient radiology report generation from chest x-rays to establish a quantitative metric</p>
+                    <p class="pub-authors">Nathan Hadjiyski, <strong>Akhil Kasturi</strong>, Ali Vosoughi, Axel Wismüller</p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Enhancing graph attention neural network performance for marijuana consumption classification through lsAGC analysis of functional MR images</p>
+                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2024" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Graph attention transformers and large-scale Granger causality to classify marijuana consumption from functional MR images</p>
+                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2024</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <!-- 2023 -->
+            <h3 class="pub-year">2023</h3>
+            
+            <div class="pub-item" data-year="2023" data-type="first">
+                <div class="pub-marker first-author"></div>
+                <div>
+                    <p class="pub-title">Detecting landmarks in anatomical medical images using transformer-based networks</p>
+                    <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Larry Stockmaster, William J. Sehnert, Axel Wismüller</p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Leveraging large-scale Granger causality and neural networks to measure the level of consciousness in DOC patients</p>
+                    <p class="pub-authors">Ali Vosoughi, T. Raiser, T. Luther, et al., <strong>Akhil Kasturi</strong></p>
+                    <p class="pub-venue">Emerging Topics in Artificial Intelligence (ETAI) 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Identification of schizophrenia patients using large-scale extended Granger causality (lsXGC) in functional MR imaging</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
+                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Large-scale Granger causality (lsGC) for classification of schizophrenia using functional MRI</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
+                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Large-scale augmented Granger causality (lsAGC) for discovery of causal brain connectivity networks in schizophrenia patients using functional MRI neuroimaging</p>
+                    <p class="pub-authors">Axel Wismüller, Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski</p>
+                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Classification of schizophrenia using large-scale kernelized Granger causality (lsKGC) and functional MR imaging</p>
+                    <p class="pub-authors">Ali Vosoughi, <strong>Akhil Kasturi</strong>, Nathan Hadjiyski, Axel Wismüller</p>
+                    <p class="pub-venue">SPIE Medical Imaging: Computer-Aided Diagnosis 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+            
+            <div class="pub-item" data-year="2023" data-type="co">
+                <div class="pub-marker co-author"></div>
+                <div>
+                    <p class="pub-title">Tracking the impact of global iodinated contrast agent shortage on radiology: analysis of CT exam volumes at a major US healthcare system</p>
+                    <p class="pub-authors">Axel Wismüller, J. Avondo, Larry Stockmaster, <strong>Akhil Kasturi</strong>, Ali Vosoughi</p>
+                    <p class="pub-venue">SPIE Medical Imaging 2023</p>
+                </div>
+                <a href="#" class="pub-link">Paper →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3>Let's connect</h3>
+                <p>Open to research collaborations and<br>industry partnerships.</p>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:akasturi@ur.rochester.edu">Email</a>
+                <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+                <a href="https://github.com/akast7" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Akhil Kasturi · University of Rochester
+        </div>
+    </footer>
+    
+    <!-- JavaScript for filtering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Publication filtering
+            const filters = document.querySelectorAll('.pub-filter');
+            const pubItems = document.querySelectorAll('.pub-item');
+            const pubYears = document.querySelectorAll('.pub-year');
+            
+            filters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // Update active state
+                    filters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    
+                    const filterValue = filter.dataset.filter;
+                    
+                    // Show/hide publications
+                    pubItems.forEach(item => {
+                        const year = item.dataset.year;
+                        const type = item.dataset.type;
+                        
+                        if (filterValue === 'all') {
+                            item.style.display = 'grid';
+                        } else if (filterValue === 'first') {
+                            item.style.display = type === 'first' ? 'grid' : 'none';
+                        } else {
+                            item.style.display = year === filterValue ? 'grid' : 'none';
+                        }
+                    });
+                    
+                    // Show/hide year headers
+                    pubYears.forEach(yearHeader => {
+                        const year = yearHeader.textContent;
+                        const hasVisibleItems = Array.from(pubItems).some(item => 
+                            item.dataset.year === year && item.style.display !== 'none'
+                        );
+                        yearHeader.style.display = hasVisibleItems ? 'block' : 'none';
+                    });
+                });
             });
-          }
+            
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
