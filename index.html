@@ -24,15 +24,8 @@
       --border: #d4d0c8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "DM Sans", sans-serif;
@@ -47,37 +40,23 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       opacity: 0.03;
       z-index: 9999;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
-    ::selection {
-      background: var(--accent-light);
-      color: var(--ink);
-    }
+    ::selection { background: var(--accent-light); color: var(--ink); }
 
-    a {
-      color: var(--ink);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    a:hover {
-      color: var(--accent);
-    }
+    a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
 
     /* Header */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 1.5rem 3rem;
       display: flex;
@@ -93,11 +72,7 @@
       color: white;
     }
 
-    nav {
-      display: flex;
-      gap: 2.5rem;
-    }
-
+    nav { display: flex; gap: 2.5rem; }
     nav a {
       font-size: 0.85rem;
       letter-spacing: 0.05em;
@@ -105,21 +80,15 @@
       color: white;
       position: relative;
     }
-
     nav a::after {
       content: "";
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
       background: white;
       transition: width 0.3s ease;
     }
-
-    nav a:hover::after {
-      width: 100%;
-    }
+    nav a:hover::after { width: 100%; }
 
     /* Hero */
     .hero {
@@ -141,16 +110,9 @@
     .hero-left::before {
       content: "";
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; right: 0; bottom: 0;
       width: 1px;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--muted),
-        transparent
-      );
+      background: linear-gradient(to bottom, transparent, var(--muted), transparent);
     }
 
     .hero-title {
@@ -187,15 +149,8 @@
       margin-bottom: 2rem;
     }
 
-    .hero-bio {
-      max-width: 500px;
-    }
-
-    .hero-bio p {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
+    .hero-bio { max-width: 520px; }
+    .hero-bio p { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
 
     .hero-links {
       display: flex;
@@ -212,11 +167,30 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Section styling */
-    section {
-      padding: 8rem 4rem;
-      position: relative;
+    /* NEW: methods pill stack */
+    .method-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+      max-width: 560px;
     }
+
+    .pill {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .pill strong { color: var(--ink); font-weight: 500; }
+
+    /* Section styling */
+    section { padding: 8rem 4rem; position: relative; }
 
     .section-label {
       font-family: "JetBrains Mono", monospace;
@@ -245,31 +219,22 @@
       margin-bottom: 1rem;
     }
 
-    .section-title em {
-      font-style: italic;
-    }
+    .section-title em { font-style: italic; }
 
-    /* News Section */
-    #news {
-      background: var(--cream);
-    }
-
+    /* News */
+    #news { background: var(--cream); }
     .news-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
       margin-top: 4rem;
     }
-
     .news-item {
       padding: 2rem 0;
       border-top: 1px solid var(--border);
       transition: transform 0.3s ease;
     }
-
-    .news-item:hover {
-      transform: translateX(10px);
-    }
+    .news-item:hover { transform: translateX(10px); }
 
     .news-date {
       font-family: "JetBrains Mono", monospace;
@@ -277,23 +242,16 @@
       color: var(--accent);
       margin-bottom: 0.5rem;
     }
-
     .news-headline {
       font-family: "Instrument Serif", serif;
       font-size: 1.3rem;
       line-height: 1.4;
       margin-bottom: 0.75rem;
     }
+    .news-desc { font-size: 0.9rem; color: var(--muted); }
 
-    .news-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* Projects Section */
-    #projects {
-      background: var(--paper);
-    }
+    /* Projects */
+    #projects { background: var(--paper); }
 
     .project-featured {
       display: grid;
@@ -369,10 +327,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
-    /* Other projects grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -390,21 +347,15 @@
     .project-card::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 3px;
       height: 0;
       background: var(--accent);
       transition: height 0.3s ease;
     }
 
-    .project-card:hover::before {
-      height: 100%;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
+    .project-card:hover::before { height: 100%; }
+    .project-card:hover { transform: translateY(-5px); }
 
     .project-number {
       font-family: "Instrument Serif", serif;
@@ -423,7 +374,7 @@
     .project-card p {
       font-size: 0.9rem;
       color: var(--muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.1rem;
     }
 
     .project-papers {
@@ -432,23 +383,15 @@
       font-family: "JetBrains Mono", monospace;
     }
 
-    /* Conferences Section */
+    /* Conferences */
     #conferences {
       background: var(--ink);
       color: var(--paper);
     }
 
-    #conferences .section-label {
-      color: var(--muted);
-    }
-
-    #conferences .section-label::before {
-      background: var(--muted);
-    }
-
-    #conferences .section-title {
-      color: var(--paper);
-    }
+    #conferences .section-label { color: var(--muted); }
+    #conferences .section-label::before { background: var(--muted); }
+    #conferences .section-title { color: var(--paper); }
 
     .conference-gallery {
       display: grid;
@@ -480,18 +423,14 @@
 
     .gallery-caption {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
       transform: translateY(100%);
       transition: transform 0.3s ease;
     }
 
-    .gallery-item:hover .gallery-caption {
-      transform: translateY(0);
-    }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
 
     .gallery-caption span {
       font-size: 0.85rem;
@@ -511,18 +450,10 @@
       line-height: 1.4;
     }
 
-    /* =========================
-       Poster Presentations
-    ========================== */
-    #posters {
-      background: var(--paper);
-    }
+    /* Posters */
+    #posters { background: var(--paper); }
 
-    .posters-wrap {
-      margin-top: 4rem;
-      max-width: 1100px;
-    }
-
+    .posters-wrap { margin-top: 4rem; max-width: 1100px; }
     .posters-subtitle {
       font-family: "Instrument Serif", serif;
       font-size: 1.8rem;
@@ -543,9 +474,7 @@
       transition: transform 0.25s ease;
     }
 
-    .poster-card:hover {
-      transform: translateY(-6px);
-    }
+    .poster-card:hover { transform: translateY(-6px); }
 
     .poster-thumb {
       width: 100%;
@@ -556,11 +485,7 @@
       margin-bottom: 1rem;
     }
 
-    .poster-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
+    .poster-meta { display: flex; flex-direction: column; gap: 0.4rem; }
 
     .poster-tag {
       font-family: "JetBrains Mono", monospace;
@@ -576,10 +501,7 @@
       line-height: 1.35;
     }
 
-    .poster-desc {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .poster-desc { color: var(--muted); font-size: 0.92rem; }
 
     .poster-links {
       display: flex;
@@ -598,14 +520,10 @@
       padding-bottom: 0.2rem;
     }
 
-    .poster-links a:hover {
-      border-bottom-color: var(--accent);
-    }
+    .poster-links a:hover { border-bottom-color: var(--accent); }
 
-    /* Publications Section */
-    #publications {
-      background: var(--paper);
-    }
+    /* Publications */
+    #publications { background: var(--paper); }
 
     .pub-filters {
       display: flex;
@@ -633,9 +551,7 @@
       border-color: var(--ink);
     }
 
-    .pub-list {
-      max-width: 900px;
-    }
+    .pub-list { max-width: 900px; }
 
     .pub-year {
       font-family: "Instrument Serif", serif;
@@ -669,9 +585,7 @@
       margin-top: 0.5rem;
     }
 
-    .pub-marker.co-author {
-      background: var(--border);
-    }
+    .pub-marker.co-author { background: var(--border); }
 
     .pub-title {
       font-family: "Instrument Serif", serif;
@@ -686,9 +600,7 @@
       margin-bottom: 0.3rem;
     }
 
-    .pub-authors strong {
-      color: var(--ink);
-    }
+    .pub-authors strong { color: var(--ink); }
 
     .pub-venue {
       font-size: 0.8rem;
@@ -705,10 +617,8 @@
       white-space: nowrap;
     }
 
-    /* About Section */
-    #about {
-      background: var(--cream);
-    }
+    /* About */
+    #about { background: var(--cream); }
 
     .about-content {
       display: grid;
@@ -720,7 +630,7 @@
     .about-text p {
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
-      max-width: 600px;
+      max-width: 640px;
     }
 
     .about-text p:first-of-type {
@@ -739,9 +649,7 @@
       margin-top: 2rem;
     }
 
-    .about-details h4:first-child {
-      margin-top: 0;
-    }
+    .about-details h4:first-child { margin-top: 0; }
 
     .about-details p {
       font-size: 0.95rem;
@@ -769,10 +677,7 @@
       margin-bottom: 1rem;
     }
 
-    .footer-left p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .footer-left p { color: var(--muted); font-size: 0.9rem; }
 
     .footer-links {
       display: flex;
@@ -796,94 +701,23 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-left {
-        min-height: 60vh;
-      }
-
-      .project-featured {
-        grid-template-columns: 1fr;
-      }
-
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .conference-gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .posters-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { min-height: 60vh; }
+      .project-featured { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .conference-gallery { grid-template-columns: repeat(2, 1fr); }
+      .about-content { grid-template-columns: 1fr; gap: 3rem; }
+      .posters-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      header {
-        padding: 1rem 1.5rem;
-      }
-
-      nav {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-
-      section {
-        padding: 4rem 1.5rem;
-      }
-
-      .news-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .conference-gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item {
-        aspect-ratio: 16/10;
-      }
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-in {
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.1s;
-    }
-    .delay-2 {
-      animation-delay: 0.2s;
-    }
-    .delay-3 {
-      animation-delay: 0.3s;
-    }
-    .delay-4 {
-      animation-delay: 0.4s;
+      header { padding: 1rem 1.5rem; }
+      nav { gap: 1.5rem; flex-wrap: wrap; }
+      section { padding: 4rem 1.5rem; }
+      .news-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .conference-gallery { grid-template-columns: 1fr; }
+      .gallery-item { aspect-ratio: 16/10; }
     }
   </style>
 </head>
@@ -908,17 +742,31 @@
       <p class="hero-subtitle">PhD Candidate · University of Rochester</p>
       <h1 class="hero-title">Akhil<br />Kasturi</h1>
     </div>
+
     <div class="hero-right">
       <img src="assets/profile.jpg" alt="Akhil Kasturi" class="hero-image" />
+
       <div class="hero-bio">
         <p>
-          I build <strong>foundation-model-style AI systems</strong> for multimodal and sequential data.
-          My work spans <strong>deep learning, generative modeling, LLMs/NLP, and transformers</strong>—from
-          representation learning and contrastive pretraining to temporal modeling and robust evaluation.
-          I’m interested in methods that transfer across domains (healthcare, energy, sensing), especially
-          <strong>time-series foundation models</strong>, <strong>multimodal reasoning</strong>, and
-          <strong>efficient fine-tuning</strong>.
+          I’m an <strong>AI/ML research scientist</strong> building transferable methods for
+          <strong>foundation models</strong> on <strong>multimodal</strong> and <strong>time-series</strong> data.
+          My work centers on <strong>transformers</strong>, <strong>self-supervised / contrastive learning</strong>,
+          <strong>generative modeling</strong>, and <strong>LLMs/NLP</strong>—with a focus on robust evaluation and
+          efficient fine-tuning. I validate these methods on real-world datasets across domains
+          (e.g., healthcare, sensing), and I’m actively expanding toward <strong>energy systems time-series</strong>.
         </p>
+
+        <div class="method-pills" aria-label="Core methodologies">
+          <span class="pill"><strong>Transformers</strong></span>
+          <span class="pill">Self-Supervised</span>
+          <span class="pill">Contrastive</span>
+          <span class="pill">Generative AI</span>
+          <span class="pill">LLMs / NLP</span>
+          <span class="pill">Time-Series</span>
+          <span class="pill">Uncertainty / OOD</span>
+          <span class="pill">Ablations</span>
+        </div>
+
         <div class="hero-links">
           <a href="mailto:akasturi@ur.rochester.edu">Email</a>
           <a href="https://scholar.google.com/citations?user=_-CUcbYAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
@@ -932,24 +780,24 @@
   <!-- About -->
   <section id="about">
     <span class="section-label">01 — About</span>
-    <h2 class="section-title">Building <em>generalizable</em><br />AI systems</h2>
+    <h2 class="section-title">Building <em>generalizable</em><br />AI methodology</h2>
 
     <div class="about-content">
       <div class="about-text">
         <p>
-          I am a PhD candidate at the University of Rochester working on <strong>machine learning research</strong>
-          spanning <strong>deep learning, generative AI, LLMs/NLP</strong>, and <strong>time-series modeling</strong>.
+          I am a PhD candidate at the University of Rochester developing <strong>transferable machine learning methods</strong>
+          that generalize across domains and modalities.
         </p>
         <p>
-          My research emphasizes <strong>domain-agnostic methodology</strong>: transformer-based architectures,
-          contrastive/self-supervised representation learning, robust evaluation, uncertainty estimation, and
-          temporal modeling for forecasting, anomaly detection, and decision support. I’m particularly interested
-          in how <strong>foundation models</strong> can be adapted with efficient fine-tuning to new tasks and new domains.
+          My research focuses on <strong>transformer-based architectures</strong> for sequential and multimodal learning:
+          <strong>self-supervised pretraining</strong> (e.g., masked modeling), <strong>contrastive representation learning</strong>,
+          and <strong>generative modeling</strong> with <strong>LLM-style</strong> systems. A recurring theme is rigorous validation:
+          ablations, calibration, uncertainty, and stress-testing under distribution shift.
         </p>
         <p>
-          I am advised by Prof. Axel Wismüller in the AI in Radiology Laboratory (Dept. of Imaging Sciences / ECE).
-          While many datasets I work with come from real-world applications, my focus is on <strong>transferable ML methods</strong>
-          and <strong>strong scientific validation</strong>.
+          I am advised by Prof. Axel Wismüller (AI in Radiology Laboratory, Imaging Sciences / ECE). While many of my benchmark datasets
+          come from high-stakes real-world settings, my emphasis is on <strong>methodology</strong>—the same modeling and evaluation toolkit
+          applies directly to domains like <strong>energy systems</strong>, <strong>industrial sensing</strong>, and <strong>forecasting/anomaly detection</strong>.
         </p>
       </div>
 
@@ -990,37 +838,36 @@
     <div class="news-grid">
       <div class="news-item">
         <span class="news-date">February 2026</span>
-        <h3 class="news-headline">SPIE Medical Imaging 2026 — LLMs for Structured Data Modeling</h3>
+        <h3 class="news-headline">SPIE 2026 — LLM Fine-Tuning for Structured Variables</h3>
         <p class="news-desc">
-          Presented work on fine-tuning LLaMA-style transformer models for prediction from structured variables,
-          highlighting scalable training/evaluation, calibration, and robust feature sensitivity analysis.
+          Presented work on adapting LLaMA-style transformer models for prediction from structured variables, emphasizing
+          efficient fine-tuning, calibration, and feature sensitivity analysis.
         </p>
       </div>
 
       <div class="news-item">
         <span class="news-date">February 2026</span>
-        <h3 class="news-headline">SPIE Medical Imaging 2026 — Interpretability & Robustness</h3>
+        <h3 class="news-headline">SPIE 2026 — Interpretability & Robustness in Transformers</h3>
         <p class="news-desc">
-          Delivered an oral presentation on interpretable transformer-based prediction with leave-one-feature-out analysis
-          to quantify key predictors and stress-test model stability under distribution shifts.
+          Oral presentation on interpretable transformer-based prediction with leave-one-feature-out analysis and stress tests
+          under distribution shift.
         </p>
       </div>
 
       <div class="news-item">
         <span class="news-date">December 2025</span>
-        <h3 class="news-headline">RSNA 2025 Presentation</h3>
+        <h3 class="news-headline">RSNA 2025 — Self-Supervised Representation Learning</h3>
         <p class="news-desc">
-          Presented masked autoencoder (MAE) research for representation learning, focusing on scalable pretraining and transfer
-          to downstream tasks with limited labels.
+          Presented masked autoencoder research focusing on scalable pretraining and transfer to downstream tasks with limited labels.
         </p>
       </div>
 
       <div class="news-item">
         <span class="news-date">November 2025</span>
-        <h3 class="news-headline">Large-Scale Multi-Modal Dataset Collaboration</h3>
+        <h3 class="news-headline">Multi-Institutional Dataset Collaboration</h3>
         <p class="news-desc">
-          Collaborating with Yale University and UC Irvine on a large-scale dataset effort (multimodal + temporal),
-          enabling research on foundation models and generalizable sequence learning.
+          Collaborating with Yale University and UC Irvine on a large-scale multimodal dataset effort enabling research on foundation models
+          and sequence learning.
         </p>
       </div>
     </div>
@@ -1034,24 +881,24 @@
     <div class="project-featured">
       <div class="project-featured-content">
         <span class="project-badge">Featured Project</span>
-        <h3>Time-Series & Multimodal Foundation Modeling</h3>
+        <h3>Foundation Models for Multimodal & Time-Series Data</h3>
         <p>
-          Developing transferable transformer-based methodologies for <strong>multimodal + temporal</strong> data:
-          representation learning, contrastive objectives, cross-attention fusion, and robust evaluation. The goal is
-          a general-purpose modeling pipeline that adapts across domains (e.g., energy systems, sensing, and healthcare).
+          I develop transformer-based methodologies that unify <strong>multimodal fusion</strong> and <strong>sequence modeling</strong>:
+          contrastive pretraining, cross-attention, and robust evaluation. The goal is a modeling pipeline that transfers across domains
+          with minimal task-specific engineering.
         </p>
         <p>
-          This includes research on <strong>time-series foundation models</strong> (pretraining + fine-tuning),
-          sequence forecasting and anomaly detection, and <strong>LLM-style architectures</strong> applied to structured and textual data.
+          Current directions include <strong>time-series foundation models</strong> (pretraining + efficient adaptation), forecasting and anomaly detection,
+          and <strong>LLM-style architectures</strong> for structured and textual signals.
         </p>
         <p>
-          Current work explores scalable training strategies, calibration/uncertainty, and systematic ablations to validate
-          what truly transfers when moving between domains and tasks.
+          I prioritize scientific clarity: careful ablations, calibration/uncertainty, and stress-testing to understand what truly generalizes when moving
+          between datasets, tasks, and domains.
         </p>
         <div class="project-status">
-          <span class="status-tag highlight">Methodology-first · Domain-agnostic</span>
+          <span class="status-tag highlight">Methodology-first</span>
           <span class="status-tag">Transformers</span>
-          <span class="status-tag">Generative + Self-Supervised</span>
+          <span class="status-tag">Self-Supervised + Generative</span>
         </div>
       </div>
       <div class="project-visual">
@@ -1062,30 +909,30 @@
     <div class="projects-grid">
       <div class="project-card">
         <span class="project-number">02</span>
-        <h4>Generative Vision–Language Modeling</h4>
+        <h4>Temporal Vision–Language Generation</h4>
         <p>
           Built BioVLM-T, a temporal vision-language framework that conditions generation on historical context.
-          Focused on robust temporal conditioning, retrieval/memory mechanisms, and evaluation beyond surface-level metrics.
+          Focus on sequence conditioning, retrieval/memory, and evaluation beyond surface-level metrics.
         </p>
         <span class="project-papers">SPIE Medical Imaging 2025</span>
       </div>
 
       <div class="project-card">
         <span class="project-number">03</span>
-        <h4>Transformer Systems for Detection & Localization</h4>
+        <h4>Transformer Detection & Localization</h4>
         <p>
-          Designed transformer-based detection/segmentation/localization systems emphasizing data efficiency,
-          generalization under shifts, and uncertainty-aware decision thresholds.
+          Designed transformer-based detection/localization systems emphasizing generalization under shift,
+          uncertainty-aware evaluation, and data-efficient learning.
         </p>
-        <span class="project-papers">4 Conference Proceeding Papers · 2024–2025</span>
+        <span class="project-papers">4 Conference Papers · 2024–2025</span>
       </div>
 
       <div class="project-card">
         <span class="project-number">04</span>
-        <h4>Time-Series Causality & Representation Learning</h4>
+        <h4>Multivariate Time-Series Causality</h4>
         <p>
-          Research on multivariate time-series analysis and causal discovery (lsAGC/lsNGC) with large-scale augmentation,
-          scalable modeling, and rigorous benchmarking for complex dynamical systems.
+          Research on large-scale augmented Granger causality (lsAGC/lsNGC) for multivariate time-series—scalable modeling, benchmarking,
+          and causal discovery in complex dynamical systems.
         </p>
         <span class="project-papers">Multiple Papers · 2023–2025</span>
       </div>
@@ -1113,7 +960,7 @@
         <div class="gallery-caption">
           <span class="caption-title">SPIE Medical Imaging 2024</span>
           <span class="caption-desc">
-            Presenting transformer-based modeling work with emphasis on generalization, robustness, and evaluation.
+            Presenting transformer-based methodology with emphasis on robustness, uncertainty, and evaluation.
           </span>
         </div>
       </div>
@@ -1123,7 +970,7 @@
         <div class="gallery-caption">
           <span class="caption-title">SPIE 2024 — Best Scientific Poster</span>
           <span class="caption-desc">
-            Recognized for work on transformer-based methodology and rigorous validation in real-world settings.
+            Recognized for work on transformer-based modeling and rigorous validation in real-world datasets.
           </span>
         </div>
       </div>
@@ -1151,10 +998,10 @@
 
           <div class="poster-meta">
             <div class="poster-tag">Poster · SPIE Medical Imaging 2026</div>
-            <div class="poster-title">Prediction Using Fine-Tuned Large Language Models on Structured Variables</div>
+            <div class="poster-title">Prediction Using Fine-Tuned LLMs on Structured Variables</div>
             <div class="poster-desc">
-              Fine-tuned LLaMA-style models on structured variables to enable low-latency prediction,
-              with emphasis on calibration, robustness, and feature sensitivity.
+              Fine-tuned LLaMA-style models for prediction from structured variables with emphasis on calibration,
+              robustness, and feature sensitivity.
             </div>
 
             <div class="poster-links">
@@ -1169,7 +1016,7 @@
             <img
               class="poster-thumb"
               src="assets/posters/SPIE_2024_MI_ALDx_v1.jpg"
-              alt="Poster: Transformer-based Localization"
+              alt="Poster: Transformer-based Localization with Robustness Analysis"
             />
           </a>
 
@@ -1233,7 +1080,7 @@
           <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ali Vosoughi, Nathan Hadjiyski, Axel Wismüller</p>
           <p class="pub-venue">SPIE Medical Imaging: Clinical and Biomedical Imaging 2025</p>
         </div>
-        <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13410/134100W/BioVLM-T--A-temporal-framework-for-radiology-report-generation/10.1117/12.3047498.full" class="pub-link" target="_blank" rel="noopener">Paper →</a>
+        <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13410/134100W/BioVLM-T--A-temporal-framework-for-radiology-report-generation/10.1117/12.3047498.full" class="pub-link" target="_blank" rel="noopener noreferrer">Paper →</a>
       </div>
 
       <div class="pub-item" data-year="2025" data-type="first">
@@ -1323,9 +1170,9 @@
       </div>
       <div class="footer-links">
         <a href="mailto:akasturi@ur.rochester.edu">Email</a>
-        <a href="https://scholar.google.com/citations?user=_-CUcbYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://github.com/akast7" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=_-CUcbYAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://github.com/akast7" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/akhil-k-21069711b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1380,10 +1227,7 @@
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
       });
