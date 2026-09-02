@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akhil Kasturi — Generative AI & LLM Researcher</title>
+    <title>Akhil Kasturi — PhD Researcher in Artificial Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -97,6 +97,9 @@
         .status-tag.highlight { border-color: var(--accent); color: var(--accent); }
         .project-visual { background: var(--ink); min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .visual-placeholder { width: calc(100% - 4rem); min-height: 280px; border: 1px dashed #777; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: #c8c8c8; }
+        .visual-placeholder strong { font-family: "Instrument Serif", serif; font-size: 1.5rem; font-weight: 400; color: var(--paper); margin-bottom: 0.5rem; }
+        .visual-placeholder span { max-width: 320px; font-size: 0.8rem; line-height: 1.5; color: #999; }
 
         .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
         .project-card { padding: 2rem; background: var(--cream); position: relative; transition: all 0.3s ease; }
@@ -203,6 +206,7 @@
     <div class="logo">AK</div>
     <nav>
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#news">News</a>
         <a href="#projects">Research</a>
         <a href="#conferences">Conferences</a>
@@ -221,13 +225,14 @@
         <img src="assets/profile.jpg" alt="Akhil Kasturi" class="hero-image" />
         <div class="hero-bio">
             <p>
-                Building large language models, multimodal deep learning systems, and agentic AI workflows.
-                My research focuses on LLM pre-training and domain adaptation, cross-modal reasoning across
-                text, vision, and time-series data, and multi-agent orchestration for automated generation tasks.
+                I am a PhD candidate in Electrical and Computer Engineering at the University of Rochester.
+                My research focuses on large language models and multimodal learning for clinical applications.
+                In summer 2026, I was an Applied Science Intern at Amazon, where I worked on methods that help
+                language models find and use information from tools before answering a question.
             </p>
             <p style="font-size:0.88rem; color: var(--muted);">
-                Research Interests: LLM Pre-Training &amp; Fine-Tuning, Agentic AI, Multimodal Fusion,
-                Self-Supervised Learning, NLP, Vision-Language Models
+                Research Interests: Large Language Models, Multimodal Learning, Vision-Language Models,
+                Tool-Using Language Models, and Self-Supervised Learning
             </p>
             <div class="hero-links">
                 <a href="mailto:akasturi@ur.rochester.edu">Email</a>
@@ -242,23 +247,22 @@
 <!-- About -->
 <section id="about">
     <span class="section-label">01 &mdash; About</span>
-    <h2 class="section-title">Building <em>intelligent</em><br />systems at scale</h2>
+    <h2 class="section-title">Research across <em>language, vision,</em><br />and clinical data</h2>
     <div class="about-content">
         <div class="about-text">
             <p>
-                I am a PhD candidate at the University of Rochester developing large language models,
-                multimodal AI systems, and agentic workflows for high-stakes applications.
+                I am a PhD candidate at the University of Rochester, advised by Prof. Axel Wism&uuml;ller.
+                I develop machine learning methods that combine language, images, and clinical data.
             </p>
             <p>
-                My research spans LLM pre-training and domain adaptation on billion-scale corpora,
-                multimodal fusion systems that jointly reason across text, vision, and time-series signals,
-                and multi-agent LLM orchestration for automated report generation. I work across the full
-                stack&mdash;from distributed GPU training on AWS to evaluation and deployment.
+                My work includes pre-training and adapting language models, combining text with medical images
+                and time-series measurements, and generating clinical reports from multiple sources of patient
+                information. I work across model development, distributed training, and careful evaluation.
             </p>
             <p>
-                I have published 22 peer-reviewed papers (10+ first-author), received the Best Scientific
-                Poster Award at SPIE Medical Imaging, and currently have a manuscript under review at
-                Nature Scientific Reports. I am advised by Prof. Axel Wism&uuml;ller.
+                I have published 22 peer-reviewed papers, including more than 10 as first author, and received
+                the Best Scientific Poster Award at SPIE Medical Imaging. In summer 2026, I also completed an
+                Applied Science internship at Amazon focused on tool-using language models.
             </p>
         </div>
         <div class="about-details">
@@ -290,11 +294,64 @@
     </div>
 </section>
 
+<!-- Experience -->
+<section id="experience">
+    <span class="section-label">02 &mdash; Experience</span>
+    <h2 class="section-title">Applied science <em>at Amazon</em></h2>
+
+    <div class="project-featured">
+        <div class="project-featured-content">
+            <span class="project-badge">Summer 2026</span>
+            <h3>Applied Science Intern</h3>
+            <p>
+                I studied how language models can use tools more effectively on difficult, multi-step tasks.
+                My work covered reviewing prior research, designing and implementing methods, building
+                evaluation experiments, and preparing a research paper.
+            </p>
+            <p>
+                My main project was Evidence-Guided Adaptive Search (EGAS). The method breaks a question into
+                the pieces of information needed to answer it, gathers evidence with tools, and uses that
+                evidence to decide what to investigate next. I compared EGAS with six published methods on
+                the public BFCL V4 and &tau;<sup>2</sup>-bench Retail benchmarks. This work led to a first-author
+                submission to a NeurIPS 2026 workshop.
+            </p>
+            <p>
+                I also implemented and compared self-correction and tree-search methods for tool-using language
+                models and helped design the evaluation used to compare their answers. This was an internal
+                project, so no internal systems, data, or results are described here.
+            </p>
+            <div class="project-status">
+                <span class="status-tag highlight">Evidence-Guided Adaptive Search</span>
+                <span class="status-tag">Tool-Using Language Models</span>
+                <span class="status-tag">Evaluation</span>
+                <span class="status-tag">Python</span>
+                <span class="status-tag">LangGraph</span>
+                <span class="status-tag">Amazon Bedrock</span>
+            </div>
+        </div>
+        <div class="project-visual">
+            <!-- Replace this placeholder with the final public-safe EGAS diagram. -->
+            <div class="visual-placeholder" role="img" aria-label="Placeholder for an EGAS method diagram">
+                <strong>EGAS diagram</strong>
+                <span>Placeholder for a public-safe overview showing question decomposition, evidence gathering, and the next-step decision.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- News -->
 <section id="news">
-    <span class="section-label">02 &mdash; News</span>
+    <span class="section-label">03 &mdash; News</span>
     <h2 class="section-title">Latest <em>updates</em></h2>
     <div class="news-grid">
+        <div class="news-item">
+            <span class="news-date">August 2026</span>
+            <h3 class="news-headline">Completed Applied Science Internship at Amazon</h3>
+            <p class="news-desc">
+                Developed and evaluated methods for tool-using language models and prepared a first-author
+                submission based on Evidence-Guided Adaptive Search.
+            </p>
+        </div>
         <div class="news-item">
             <span class="news-date">February 2026</span>
             <h3 class="news-headline">SPIE Medical Imaging 2026 &mdash; LLM Fine-Tuning for Structured Data Classification</h3>
@@ -335,7 +392,7 @@
 
 <!-- Projects -->
 <section id="projects">
-    <span class="section-label">03 &mdash; Research</span>
+    <span class="section-label">04 &mdash; Doctoral Research</span>
     <h2 class="section-title">Selected <em>projects</em></h2>
 
     <!-- Featured: LLM Pre-Training -->
@@ -362,7 +419,11 @@
             </div>
         </div>
         <div class="project-visual">
-            <img src="assets/CLAIR2.png" alt="LLM Pre-Training Architecture" />
+            <!-- Replace this placeholder with the final LLM pre-training architecture diagram. -->
+            <div class="visual-placeholder" role="img" aria-label="Placeholder for the LLM pre-training architecture diagram">
+                <strong>Model architecture</strong>
+                <span>Placeholder for the existing LLM pre-training and domain-adaptation figure.</span>
+            </div>
         </div>
     </div>
 
@@ -381,13 +442,13 @@
         </div>
         <div class="project-card">
             <span class="project-number">03</span>
-            <h4>Agentic AI for Automated Report Generation</h4>
+            <h4>Automated Report Generation with Language Models</h4>
             <p>
-                Designed a multi-agent orchestration system using Gemini-based LLM agents for end-to-end
-                automated report generation. Implemented agent communication protocols, tool-use integration,
-                and RAG with domain knowledge bases. Evaluated via BERTScore, ROUGE, and human-expert review.
+                Built a system in which multiple Gemini-based language models work together to generate
+                reports from domain data and retrieved reference material. Evaluated the generated reports
+                with BERTScore, ROUGE, and review by human experts.
             </p>
-            <span class="project-papers">Gemini Agents &middot; RAG &middot; BERTScore &middot; Docker</span>
+            <span class="project-papers">Gemini &middot; Retrieval-Augmented Generation &middot; BERTScore &middot; Docker</span>
         </div>
         <div class="project-card">
             <span class="project-number">04</span>
@@ -434,7 +495,7 @@
 
 <!-- Conferences -->
 <section id="conferences">
-    <span class="section-label">04 &mdash; Conferences</span>
+    <span class="section-label">05 &mdash; Conferences</span>
     <h2 class="section-title">Conference <em>gallery</em></h2>
     <div class="conference-gallery">
         <div class="gallery-item">
@@ -466,7 +527,7 @@
 
 <!-- Posters -->
 <section id="posters">
-    <span class="section-label">04B &mdash; Posters</span>
+    <span class="section-label">05B &mdash; Posters</span>
     <h2 class="section-title">Poster <em>presentations</em></h2>
     <div class="posters-wrap">
         <h3 class="posters-subtitle">SPIE Medical Imaging &mdash; Posters</h3>
@@ -511,16 +572,29 @@
 
 <!-- Publications -->
 <section id="publications">
-    <span class="section-label">05 &mdash; Publications</span>
+    <span class="section-label">06 &mdash; Publications</span>
     <h2 class="section-title">Research <em>output</em></h2>
     <div class="pub-filters">
         <button class="pub-filter active" data-filter="all">All</button>
         <button class="pub-filter" data-filter="first">First Author</button>
+        <button class="pub-filter" data-filter="2026">2026</button>
         <button class="pub-filter" data-filter="2025">2025</button>
         <button class="pub-filter" data-filter="2024">2024</button>
         <button class="pub-filter" data-filter="2023">2023</button>
     </div>
     <div class="pub-list">
+        <h3 class="pub-year">2026</h3>
+
+        <div class="pub-item" data-year="2026" data-type="first">
+            <div class="pub-marker first-author"></div>
+            <div>
+                <p class="pub-title">Evidence Guided Adaptive Search for Helping AI Agents Find Missing Facts Before Answering</p>
+                <p class="pub-authors"><strong>Akhil Kasturi</strong> &mdash; work performed during an internship at Amazon</p>
+                <p class="pub-venue">Under Review &mdash; NeurIPS 2026 Workshop on Agentic AI Benchmarks and Applications for Enterprise Tasks</p>
+            </div>
+            <span class="pub-link">In Review</span>
+        </div>
+
         <h3 class="pub-year">2025</h3>
 
         <div class="pub-item" data-year="2025" data-type="first">
