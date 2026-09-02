@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akhil Kasturi — Generative AI & LLM Researcher</title>
+    <title>Akhil Kasturi — PhD Researcher in Artificial Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -97,6 +97,9 @@
         .status-tag.highlight { border-color: var(--accent); color: var(--accent); }
         .project-visual { background: var(--ink); min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .visual-placeholder { width: calc(100% - 4rem); min-height: 280px; border: 1px dashed #777; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: #c8c8c8; }
+        .visual-placeholder strong { font-family: "Instrument Serif", serif; font-size: 1.5rem; font-weight: 400; color: var(--paper); margin-bottom: 0.5rem; }
+        .visual-placeholder span { max-width: 320px; font-size: 0.8rem; line-height: 1.5; color: #999; }
 
         .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
         .project-card { padding: 2rem; background: var(--cream); position: relative; transition: all 0.3s ease; }
@@ -203,6 +206,7 @@
     <div class="logo">AK</div>
     <nav>
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#news">News</a>
         <a href="#projects">Research</a>
         <a href="#conferences">Conferences</a>
@@ -221,13 +225,14 @@
         <img src="assets/profile.jpg" alt="Akhil Kasturi" class="hero-image" />
         <div class="hero-bio">
             <p>
-                Building large language models, multimodal deep learning systems, and agentic AI workflows.
-                My research focuses on LLM pre-training and domain adaptation, cross-modal reasoning across
-                text, vision, and time-series data, and multi-agent orchestration for automated generation tasks.
+                I am a PhD candidate in Electrical and Computer Engineering at the University of Rochester.
+                I work on large language models and multimodal learning, mostly for clinical problems.
+                In summer 2026 I was an Applied Science Intern at Amazon, working on methods that help
+                language models gather the information they need from tools before answering.
             </p>
             <p style="font-size:0.88rem; color: var(--muted);">
-                Research Interests: LLM Pre-Training &amp; Fine-Tuning, Agentic AI, Multimodal Fusion,
-                Self-Supervised Learning, NLP, Vision-Language Models
+                Research Interests: Large Language Models, Multimodal Learning, Vision-Language Models,
+                Tool-Using Language Models, Self-Supervised Learning
             </p>
             <div class="hero-links">
                 <a href="mailto:akasturi@ur.rochester.edu">Email</a>
@@ -242,23 +247,26 @@
 <!-- About -->
 <section id="about">
     <span class="section-label">01 &mdash; About</span>
-    <h2 class="section-title">Building <em>intelligent</em><br />systems at scale</h2>
+    <h2 class="section-title">Research across <em>language, vision,</em><br />and clinical data</h2>
     <div class="about-content">
         <div class="about-text">
             <p>
-                I am a PhD candidate at the University of Rochester developing large language models,
-                multimodal AI systems, and agentic workflows for high-stakes applications.
+                I am a PhD candidate at the University of Rochester, advised by Prof. Axel Wism&uuml;ller.
+                I develop machine learning methods that combine language, images, and clinical data.
             </p>
             <p>
-                My research spans LLM pre-training and domain adaptation on billion-scale corpora,
-                multimodal fusion systems that jointly reason across text, vision, and time-series signals,
-                and multi-agent LLM orchestration for automated report generation. I work across the full
-                stack&mdash;from distributed GPU training on AWS to evaluation and deployment.
+                My work includes pre-training and adapting language models, combining text with medical
+                images and time-series measurements, and generating clinical reports from multiple sources
+                of patient information. I work across model development, distributed training, and careful
+                evaluation.
             </p>
             <p>
-                I have published 22 peer-reviewed papers (10+ first-author), received the Best Scientific
-                Poster Award at SPIE Medical Imaging, and currently have a manuscript under review at
-                Nature Scientific Reports. I am advised by Prof. Axel Wism&uuml;ller.
+                I have published 22 peer-reviewed papers, more than 10 as first author, and received the
+                Best Scientific Poster Award at SPIE Medical Imaging. My work on multimodal outcome
+                prediction was published in
+                <a href="https://www.nature.com/articles/s41598-026-45573-3" target="_blank" rel="noopener">Nature Scientific Reports</a>.
+                In summer 2026 I completed an Applied Science internship at Amazon on tool-using language
+                models.
             </p>
         </div>
         <div class="about-details">
@@ -290,11 +298,71 @@
     </div>
 </section>
 
+<!-- Experience -->
+<section id="experience">
+    <span class="section-label">02 &mdash; Experience</span>
+    <h2 class="section-title">Applied science <em>at Amazon</em></h2>
+
+    <div class="project-featured">
+        <div class="project-featured-content">
+            <span class="project-badge">Summer 2026</span>
+            <h3>Applied Science Intern</h3>
+            <p>
+                I worked on how language models use external tools to answer difficult, multi-step
+                questions. The work covered reviewing prior methods, designing and implementing a new
+                one, running benchmark experiments, and writing it up for publication.
+            </p>
+            <p>
+                My main project was <strong>Evidence-Guided Adaptive Search (EGAS)</strong>. Instead of
+                extending one line of reasoning, the method breaks a question into the specific facts
+                needed to answer it, sends out separate searches to establish each one, and keeps only
+                what the tool results actually support. A controller reads that record to decide what to
+                investigate next, or to stop. I compared EGAS against six published methods on two public
+                benchmarks, BFCL V4 Web Search and &tau;<sup>2</sup>-bench Retail. It is under review as a
+                first-author submission at the NeurIPS 2026 Workshop track (under review).
+            </p>
+            <p>
+                I also implemented and compared self-correction and tree-search methods for tool-using
+                language models, and designed the evaluation used to rank their answers. That was an
+                internal project, so no internal systems, data, or results are described here.
+            </p>
+            <div class="project-status">
+                <span class="status-tag highlight">Evidence-Guided Adaptive Search</span>
+                <span class="status-tag">Tool-Using Language Models</span>
+                <span class="status-tag">Benchmarking &amp; Evaluation</span>
+                <span class="status-tag">Python</span>
+                <span class="status-tag">LangGraph</span>
+                <span class="status-tag">Amazon Bedrock</span>
+            </div>
+        </div>
+        <div class="project-visual" style="background: var(--paper); padding: 2rem;">
+            <img src="assets/experience/egas-diagram.png" alt="EGAS architecture: Extract Findings, Create Objectives, N parallel sub-ReAct agents, Update Findings, a Controller that chooses Deepen, Diversify, or Verify, and Finalize Answer" style="width: 100%; height: auto; object-fit: contain; opacity: 1;" />
+        </div>
+    </div>
+</section>
+
 <!-- News -->
 <section id="news">
-    <span class="section-label">02 &mdash; News</span>
+    <span class="section-label">03 &mdash; News</span>
     <h2 class="section-title">Latest <em>updates</em></h2>
     <div class="news-grid">
+        <div class="news-item">
+            <span class="news-date">August 2026</span>
+            <h3 class="news-headline">CLAIR published in Nature Scientific Reports</h3>
+            <p class="news-desc">
+                Our multimodal contrastive framework for early neurological outcome prediction after
+                cardiac arrest is out in Scientific Reports, reaching an AUC-ROC of 0.94 across 208
+                patients.
+            </p>
+        </div>
+        <div class="news-item">
+            <span class="news-date">August 2026</span>
+            <h3 class="news-headline">Completed Applied Science Internship at Amazon</h3>
+            <p class="news-desc">
+                Developed and evaluated Evidence-Guided Adaptive Search, a method for tool-using language
+                models, and prepared a first-author workshop submission.
+            </p>
+        </div>
         <div class="news-item">
             <span class="news-date">February 2026</span>
             <h3 class="news-headline">SPIE Medical Imaging 2026 &mdash; LLM Fine-Tuning for Structured Data Classification</h3>
@@ -335,34 +403,38 @@
 
 <!-- Projects -->
 <section id="projects">
-    <span class="section-label">03 &mdash; Research</span>
+    <span class="section-label">04 &mdash; Doctoral Research</span>
     <h2 class="section-title">Selected <em>projects</em></h2>
 
-    <!-- Featured: LLM Pre-Training -->
+    <!-- Featured: CLAIR -->
     <div class="project-featured">
         <div class="project-featured-content">
-            <span class="project-badge">Featured Project</span>
-            <h3>LLaMA Pre-Training for Domain Adaptation</h3>
+            <span class="project-badge">Published &middot; Nature Scientific Reports</span>
+            <h3>CLAIR &mdash; Multimodal Contrastive Prognostication</h3>
             <p>
-                Pre-trained and domain-adapted LLaMA 3.2 (3B) and LLaMA 3 (8B) foundation models on a
-                4 billion+ record text corpus and 200K+ scientific articles using self-supervised masked
-                language modeling. Distributed training across 4&times; A100 GPUs on AWS with DeepSpeed ZeRO-3
-                and mixed-precision training (bf16).
+                CLAIR (contrastive language and image reasoning with masked autoencoders) combines head CT
+                imaging with non-imaging clinical information through a cross-attention mechanism and a
+                contrastive learning approach, to predict cerebral performance category score after
+                cardiac arrest.
             </p>
             <p>
-                Benchmarked on open-source EMR-QA and ClinicalQA datasets, then evaluated on downstream
-                classification tasks. Custom data pipelines for text normalization, deduplication, and
-                tokenization. Experiment tracking via Weights &amp; Biases.
+                In a retrospective study of 208 patients, CLAIR reached an <strong>AUC-ROC of 0.94</strong>
+                (CI 0.90&ndash;0.97) when trained on multiplanar CT reconstructions combined with clinical
+                data, against <strong>0.80</strong> (CI 0.74&ndash;0.86) for imaging-only methods
+                (p&nbsp;=&nbsp;0.03). In a structured evaluation, ICU neurologists made fewer prognostic
+                errors with CLAIR-assisted assessment than without. The approach also applies to CT scans
+                taken within the first 24 hours post-arrest.
             </p>
             <div class="project-status">
-                <span class="status-tag highlight">LLaMA 3 / 3.2</span>
-                <span class="status-tag">4B+ Text Records</span>
-                <span class="status-tag">AWS &middot; DeepSpeed</span>
-                <span class="status-tag">HuggingFace &middot; PyTorch</span>
+                <span class="status-tag highlight"><a href="https://www.nature.com/articles/s41598-026-45573-3" target="_blank" rel="noopener">Read the paper &rarr;</a></span>
+                <span class="status-tag">Cross-Attention Fusion</span>
+                <span class="status-tag">Masked Autoencoders</span>
+                <span class="status-tag">Contrastive Learning</span>
+                <span class="status-tag">PyTorch</span>
             </div>
         </div>
-        <div class="project-visual">
-            <img src="assets/CLAIR2.png" alt="LLM Pre-Training Architecture" />
+        <div class="project-visual" style="background: var(--paper); padding: 2rem;">
+            <img src="assets/CLAIR2.png" alt="CLAIR multimodal contrastive framework architecture" style="width: 100%; height: auto; object-fit: contain; opacity: 1;" />
         </div>
     </div>
 
@@ -370,6 +442,17 @@
     <div class="projects-grid">
         <div class="project-card">
             <span class="project-number">02</span>
+            <h4>LLaMA Pre-Training for Domain Adaptation</h4>
+            <p>
+                Pre-trained and domain-adapted LLaMA 3.2 (3B) and LLaMA 3 (8B) on a 4 billion+ record text
+                corpus and 200K+ scientific articles using self-supervised masked language modeling.
+                Distributed across 4&times; A100 GPUs on AWS with DeepSpeed ZeRO-3 and bf16 mixed
+                precision. Benchmarked on EMR-QA and ClinicalQA.
+            </p>
+            <span class="project-papers">LLaMA 3 / 3.2 &middot; AWS &middot; DeepSpeed &middot; PyTorch</span>
+        </div>
+        <div class="project-card">
+            <span class="project-number">03</span>
             <h4>Multimodal Cross-Modal Reasoning</h4>
             <p>
                 Built a novel multimodal reasoning model fusing LLM text embeddings, graph-based
@@ -380,17 +463,17 @@
             <span class="project-papers">PyTorch &middot; 3D-ViT &middot; GNN &middot; Contrastive Learning</span>
         </div>
         <div class="project-card">
-            <span class="project-number">03</span>
-            <h4>Agentic AI for Automated Report Generation</h4>
+            <span class="project-number">04</span>
+            <h4>Automated Report Generation with Language Models</h4>
             <p>
                 Designed a multi-agent orchestration system using Gemini-based LLM agents for end-to-end
                 automated report generation. Implemented agent communication protocols, tool-use integration,
                 and RAG with domain knowledge bases. Evaluated via BERTScore, ROUGE, and human-expert review.
             </p>
-            <span class="project-papers">Gemini Agents &middot; RAG &middot; BERTScore &middot; Docker</span>
+            <span class="project-papers">Gemini &middot; Retrieval-Augmented Generation &middot; BERTScore &middot; Docker</span>
         </div>
         <div class="project-card">
-            <span class="project-number">04</span>
+            <span class="project-number">05</span>
             <h4>Causal Feature Attribution for LLMs</h4>
             <p>
                 Developed a causal feature ablation methodology to quantify how individual input variables
@@ -400,7 +483,7 @@
             <span class="project-papers">SPIE 2026 Oral &middot; Explainable AI</span>
         </div>
         <div class="project-card">
-            <span class="project-number">05</span>
+            <span class="project-number">06</span>
             <h4>Self-Supervised Learning &amp; Foundation Model Adaptation</h4>
             <p>
                 Applied DINO self-distillation to pre-train Vision Transformers on unlabeled image datasets,
@@ -410,7 +493,7 @@
             <span class="project-papers">DINO &middot; SAM &middot; ViT &middot; PyTorch</span>
         </div>
         <div class="project-card">
-            <span class="project-number">06</span>
+            <span class="project-number">07</span>
             <h4>Vision-Language Report Generation</h4>
             <p>
                 Built BioVLM-T, a generative vision-language foundation model incorporating temporal
@@ -420,21 +503,21 @@
             <span class="project-papers">SPIE Medical Imaging 2025</span>
         </div>
         <div class="project-card">
-            <span class="project-number">07</span>
+            <span class="project-number">08</span>
             <h4>Transformer-Based Keypoint Detection</h4>
             <p>
                 Developed transformer-based methods for precise keypoint localization in images using
                 heatmap regression heads. Leveraged DINO self-supervised pre-trained features for weight
                 initialization. Won Best Scientific Poster Award at SPIE Medical Imaging 2024.
             </p>
-            <span class="project-papers">Best Paper Award &middot; SPIE 2024</span>
+            <span class="project-papers">Best Scientific Poster &middot; SPIE 2024</span>
         </div>
     </div>
 </section>
 
 <!-- Conferences -->
 <section id="conferences">
-    <span class="section-label">04 &mdash; Conferences</span>
+    <span class="section-label">05 &mdash; Conferences</span>
     <h2 class="section-title">Conference <em>gallery</em></h2>
     <div class="conference-gallery">
         <div class="gallery-item">
@@ -455,9 +538,9 @@
             </div>
         </div>
         <div class="gallery-item">
-            <img src="assets/conference/spie-2024-award.jpg" alt="SPIE 2024 Best Paper Award" />
+            <img src="assets/conference/spie-2024-award.jpg" alt="SPIE 2024 Best Scientific Poster Award" />
             <div class="gallery-caption">
-                <span class="caption-title">SPIE 2024 &mdash; Best Paper Award</span>
+                <span class="caption-title">SPIE 2024 &mdash; Best Scientific Poster</span>
                 <span class="caption-desc">Awarded Best Scientific Poster for transformer-based keypoint detection</span>
             </div>
         </div>
@@ -466,7 +549,7 @@
 
 <!-- Posters -->
 <section id="posters">
-    <span class="section-label">04B &mdash; Posters</span>
+    <span class="section-label">05B &mdash; Posters</span>
     <h2 class="section-title">Poster <em>presentations</em></h2>
     <div class="posters-wrap">
         <h3 class="posters-subtitle">SPIE Medical Imaging &mdash; Posters</h3>
@@ -511,27 +594,40 @@
 
 <!-- Publications -->
 <section id="publications">
-    <span class="section-label">05 &mdash; Publications</span>
+    <span class="section-label">06 &mdash; Publications</span>
     <h2 class="section-title">Research <em>output</em></h2>
     <div class="pub-filters">
         <button class="pub-filter active" data-filter="all">All</button>
         <button class="pub-filter" data-filter="first">First Author</button>
+        <button class="pub-filter" data-filter="2026">2026</button>
         <button class="pub-filter" data-filter="2025">2025</button>
         <button class="pub-filter" data-filter="2024">2024</button>
         <button class="pub-filter" data-filter="2023">2023</button>
     </div>
     <div class="pub-list">
-        <h3 class="pub-year">2025</h3>
+        <h3 class="pub-year">2026</h3>
 
-        <div class="pub-item" data-year="2025" data-type="first">
+        <div class="pub-item" data-year="2026" data-type="first">
             <div class="pub-marker first-author"></div>
             <div>
-                <p class="pub-title">Multimodal Contrastive Prognostication Framework for Early Neurological Outcome Prediction in Post-Cardiac Arrest Patients (CLAIR)</p>
-                <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, et al.</p>
-                <p class="pub-venue">Under Review &mdash; Nature Scientific Reports</p>
+                <p class="pub-title">Multimodal contrastive prognostication framework for early neurological outcome prediction in post-cardiac arrest patients</p>
+                <p class="pub-authors"><strong>Akhil Kasturi</strong>, Ashley R. Proctor, Ali Vosoughi, Chloe T. Zhang, Nathan Hadjiyski, et al., Imad R. Khan, Axel Wism&uuml;ller</p>
+                <p class="pub-venue">Scientific Reports (Nature), 2026 &middot; 16:15582</p>
             </div>
-            <a href="#" class="pub-link">Preprint &rarr;</a>
+            <a href="https://www.nature.com/articles/s41598-026-45573-3" class="pub-link" target="_blank" rel="noopener">Paper &rarr;</a>
         </div>
+
+        <div class="pub-item" data-year="2026" data-type="first">
+            <div class="pub-marker first-author"></div>
+            <div>
+                <p class="pub-title">Evidence Guided Adaptive Search for Helping AI Agents Find Missing Facts Before Answering</p>
+                <p class="pub-authors"><strong>Akhil Kasturi</strong> &mdash; work performed during an internship at Amazon</p>
+                <p class="pub-venue">Under review &mdash; NeurIPS 2026 Workshop</p>
+            </div>
+            <span class="pub-link">In Review</span>
+        </div>
+
+        <h3 class="pub-year">2025</h3>
 
         <div class="pub-item" data-year="2025" data-type="first">
             <div class="pub-marker first-author"></div>
